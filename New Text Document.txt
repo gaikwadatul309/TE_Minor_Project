@@ -1,0 +1,5 @@
+1)input output ports
+2)microcontroller interfacing with diff componenet
+3)driver ic circuitary
+4)A3 graph pages circuit diagram
+5)power supply

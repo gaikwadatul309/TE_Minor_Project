@@ -1,0 +1,4376 @@
+function check_qualification_tenth_null(val)
+{
+	if(val=='')
+	{
+		document.getElementById("tenth_discipline").value='';
+		document.getElementById("tenth_exam_trade").value='';
+		display_pwd_discipline(val, val);
+	}
+}
+function check_qualification_diploma_null(val)
+{
+	if(val=='')
+	{
+		document.getElementById("diploma_discipline").value='';
+		document.getElementById("diploma_other_discipline").value='';
+		document.getElementById("diploma_exam_trade").value='';
+		$("#other_dip_dicp_row").hide();
+		display_pwd_discipline(val, val);
+	}
+}
+function check_qualification_degree_null(val)
+{
+	if(val=='')
+	{
+		document.getElementById("degree_discipline").value='';
+		document.getElementById("degree_other_discipline").value='';
+		document.getElementById("degree_exam_trade").value='';
+		$("#other_deg_dicp_row").hide();
+		display_pwd_discipline(val, val);
+	}
+}
+function display_discipline(qualifi, displain) 
+{
+	document.getElementById(displain).value='';
+	document.getElementById("iti_exam_trade").value='';
+	var select2 = document.getElementById(displain);
+	select2.options.length = 0;
+	select2.options[select2.options.length] = new Option('select', '');
+	
+	if(qualifi!="")
+	{
+    	xajax_discipline_display(qualifi, displain);
+	}
+	else
+	{
+		document.getElementById("iti_discipline").value='';
+		document.getElementById("iti_exam_trade").value='';
+		display_pwd_discipline(qualifi, qualifi);
+	}
+}
+function display_discipline_exam(qualifi, displain) 
+{
+	
+	var select4 = document.getElementById("iti_exam_trade");
+	select4.options.length = 0;
+	select4.options[select4.options.length] = new Option('select', '');
+	if(qualifi!="")
+	{
+		display_pwd_discipline(qualifi, displain);
+		select4.options[select4.options.length] = new Option(qualifi, qualifi);
+	}
+	else
+	{
+		document.getElementById("iti_exam_trade").value='';
+	}
+}
+function display_dip_exam_trade(displain,qualification) 
+{
+	var dip_qualifi=document.getElementById("diploma_qualification").value;
+	document.getElementById("diploma_other_discipline").value='';
+	var select2 = document.getElementById(qualification);
+	select2.options.length = 0;
+	select2.options[select2.options.length] = new Option('select', '');
+	
+	if(displain=='Other streams of Automobile' || displain=='Other streams of  Electrical' || displain=='Other streams of Electronics' || displain=='Other streams of  Mechanical')
+	{
+		$(".other_dip_dicp_row").show();
+	}
+	else
+	{
+		$(".other_dip_dicp_row").hide();
+	}
+	
+	if(dip_qualifi!='' && displain!='')
+	{
+		xajax_exam_trades_diploma(dip_qualifi,displain,qualification);
+	}
+	display_pwd_discipline(displain,qualification);
+	
+}
+function display_deg_exam_trade(displain,qualification) 
+{
+	var dip_qualifi=document.getElementById("degree_qualification").value;
+	document.getElementById("degree_other_discipline").value='';
+	var select2 = document.getElementById(qualification);
+	select2.options.length = 0;
+	select2.options[select2.options.length] = new Option('select', '');
+	
+	if(displain=='Other streams of Automobile' || displain=='Other streams of  Electrical' || displain=='Other streams of Electronics' || displain=='Other streams of  Mechanical')
+	{
+		$(".other_deg_dicp_row").show();
+	}
+	else
+	{
+		$(".other_deg_dicp_row").hide();
+	}
+	
+	if(dip_qualifi!='' && displain!='')
+	{
+		xajax_exam_trades_diploma(dip_qualifi,displain,qualification);
+	}
+	display_pwd_discipline(displain,qualification);
+	
+}
+function display_pwd_discipline(displain,qualification) 
+{
+	var tenth_qualifi=document.getElementById("tenth_qualification").value;
+	var tenth_displain=document.getElementById("tenth_discipline").value;
+	
+	var iti_qualifi=document.getElementById("iti_qualification").value;
+	var dip_qualifi=document.getElementById("diploma_qualification").value;
+	var degree_qualifi=document.getElementById("degree_qualification").value;
+	
+	var iti_displain=document.getElementById("iti_discipline").value;
+	var dip_displain=document.getElementById("diploma_discipline").value;
+	var degree_displain=document.getElementById("degree_discipline").value;
+	
+	document.getElementById('vh_b_status').value=0;
+	document.getElementById('vh_b').checked=false;
+	
+	document.getElementById('vh_lv_status').value=0;
+	document.getElementById('vh_lv').checked=false;
+	
+	document.getElementById('oh_oa_status').value=0;
+	document.getElementById('oh_oa').checked=false;
+	
+	document.getElementById('oh_ol_status').value=0;
+	document.getElementById('oh_ol').checked=false;
+	
+	document.getElementById('oh_bl_status').value=0;
+	document.getElementById('oh_bl').checked=false;
+	
+	document.getElementById('hh_status').value=0;
+	document.getElementById('hh').checked=false;
+	
+	document.getElementById('hh_d_status').value=0;
+	document.getElementById('hh_d').checked=false;
+	
+	document.getElementById('lc_status').value=0;
+	document.getElementById('lc').checked=false;
+	
+	document.getElementById('aav_status').value=0;
+	document.getElementById('aav').checked=false;
+	
+	document.getElementById('dorf_status').value=0;
+	document.getElementById('dorf').checked=false;
+	
+	var rrb_id=document.getElementById("rrb_id_status").value;
+	
+	if((tenth_qualifi!="" && tenth_displain!="") || (iti_qualifi!="" && iti_displain!="") || (dip_qualifi!="" && dip_displain!="") || (degree_qualifi!="" && degree_displain!=""))
+	{
+    	xajax_discipline_pwd_display(tenth_qualifi,tenth_displain,iti_qualifi,iti_displain, dip_qualifi,dip_displain,degree_qualifi,degree_displain);
+	}
+	else
+	{
+		document.getElementById('vh_lv_status').value=0;
+		document.getElementById('vh_lv').checked=false;
+		
+		document.getElementById('oh_ol_status').value=0;
+		document.getElementById('oh_ol').checked=false;
+		
+		document.getElementById('hh_status').value=0;
+		document.getElementById('hh').checked=false;
+	}
+}
+function controltenth_display()
+{
+	document.getElementById("dialog12").innerHTML = ("Confirm that you have selected "+val+" as your Community");
+	popup_tenth();
+	
+}
+function controlreser_display(val)
+{
+	document.getElementById("caste_state").value='';
+	document.getElementById("caste_district").value='';
+	document.getElementById("caste").value='';
+	
+	if (val=='SC' || val=='ST' || val=='OBC-NON CREAMY LAYER' || val=='OBC-CREAMY LAYER')
+	{
+		document.getElementById("dialog12").innerHTML = ("Confirm that you have selected "+val+" as your Community");
+		popup_alert5(val,'reservation','reservation_row','res_obc_ncl_note');
+	}
+	else
+	{
+		$(".reservation_row").hide();
+		$("#res_obc_ncl_note").hide();
+		$("#ebc_display_row").show();
+	}
+	minority_display();
+}
+function check_confirm_tenth(field,val)
+{
+	if(val!='')
+	{
+		document.getElementById("dialog").innerHTML = ("Confirm that you have selected Maths And Physics as your Subject");
+		popup_confirm_tenth(val,field);
+	}
+	display_pwd_discipline(val,field);
+}
+function popup_confirm_tenth(val3,field)
+{
+    $(function () 
+	{
+        $("#dialog").dialog(
+		{
+			width: 500,
+			modal: true,
+			resizable: false,
+			buttons: 
+			{
+				"Confirm": function () 
+				{
+					$(this).dialog("close");
+					document.getElementById("dialog").innerHTML = "";
+				},
+				"No": function () 
+				{
+					$(this).dialog("close");
+					document.getElementById(field).value = "";
+					document.getElementById("dialog").innerHTML = "";
+				}
+			}
+		});
+    });
+}
+function check_confirm(field,val)
+{
+	document.getElementById("dialog").innerHTML = ("Confirm that you have selected "+val+" as your RRB");
+	popup_confirm(val,field);
+	
+}
+function popup_confirm(val3,field)
+{
+    $(function () 
+	{
+        $("#dialog").dialog(
+		{
+			width: 500,
+			modal: true,
+			resizable: false,
+			buttons: 
+			{
+				"Confirm": function () 
+				{
+					$(this).dialog("close");
+					document.getElementById("dialog").innerHTML = "";
+				},
+				"No": function () 
+				{
+					$(this).dialog("close");
+					document.getElementById(field).value = "";
+					document.getElementById("dialog").innerHTML = "";
+				}
+			}
+		});
+    });
+}
+function popup_alert5(val3,field,field_row,field_ncl)
+{
+    $(function () 
+	{
+        $("#dialog12").dialog(
+		{
+			width: 500,
+			modal: true,
+			resizable: false,
+			buttons: 
+			{
+				"Confirm": function () 
+				{
+					$(this).dialog("close");
+					document.getElementById("dialog12").innerHTML = "";
+					
+					if (val3=='SC' || val3=='ST' || val3=='OBC-NON CREAMY LAYER')
+					{
+						$("#res_obc_ncl_note").hide();
+						$(".reservation_row").show();
+						$("#ebc_display_row").show();
+					}
+					else if (val3=='OBC-CREAMY LAYER')
+					{
+						$(".reservation_row").hide();
+						$("#res_obc_ncl_note").show();
+						$("#ebc_display_row").hide();
+						controlebc_display('No');
+						document.submit_form.ebc[0].checked=false;
+						document.submit_form.ebc[1].checked=false;
+					}
+				},
+				"No": function () 
+				{
+					$(this).dialog("close");
+					document.getElementById(field).value = "";
+					$("."+field_row).hide();
+					$("#"+field_ncl).hide();
+					$("#ebc_display_row").show();
+					document.getElementById("dialog12").innerHTML = "";
+				}
+			}
+		});
+    });
+}
+function controlnation_display(val)
+{
+	if (val!='India' && val!='')
+	{
+		$("#nationality_note").show();
+		if(val=='A Person of Indian origin migrated from specified countries')
+		{
+			$("#nationality_origin_note").show();
+		}
+		else
+		{
+			$("#nationality_origin_note").hide();
+		}
+	}
+	else
+	{
+		$("#nationality_note").hide();
+		$("#nationality_origin_note").hide();
+	}
+}
+function controlpassing_year(val,field)
+{
+	if (val>2017)
+	{
+		$("."+field+"_passing_date").show();
+	}
+	else
+	{
+		$("."+field+"_passing_date").hide();
+	}
+}
+function display_widow(val)
+{
+	document.submit_form.widow_divorce[0].checked=false;
+	document.submit_form.widow_divorce[1].checked=false;
+	document.getElementById("widow_divorce_type").value='';
+	$("#widow_divorce_judicially_row").hide();
+	if (val=='Female')
+	{
+		$("#widow_divorce_row").show();
+	}
+	else
+	{
+		$("#widow_divorce_row").hide();
+	}
+	minority_display();
+}
+function controlphysic_display(val)
+{
+	document.submit_form.vh_b.checked=false;
+	document.submit_form.vh_lv.checked=false;
+	document.submit_form.oh_oa.checked=false;
+	document.submit_form.oh_ol.checked=false;
+	document.submit_form.oh_bl.checked=false;
+	document.submit_form.hh.checked=false;
+	
+	document.submit_form.hh_d.checked=false;
+	document.submit_form.lc.checked=false;
+	document.submit_form.aav.checked=false;
+	document.submit_form.dorf.checked=false;
+	
+	document.getElementById("pwd_cer_no").value='';
+	document.submit_form.pwd_issue_date_d[0].selected=true;
+	document.submit_form.pwd_issue_date_m[0].selected=true;
+	document.submit_form.pwd_issue_date_y[0].selected=true;
+	document.submit_form.pwd_state[0].selected=true;
+	document.submit_form.pwd_district[0].selected=true;
+	
+	
+	if (val=='Yes')
+	{
+		$("#vh_type_row").show();
+		$("#vh_certificate_row").show();
+		
+		if( document.getElementById("rrb_id_status").value==37)
+		{
+			$("#other_nation_pwd_row").show();
+		}
+	}
+	else
+	{
+		$("#vh_type_row").hide();
+		$("#vh_certificate_row").hide();
+		$("#other_nation_pwd_row").hide();
+	}
+	minority_display();
+}
+function controlphysic_vh(val)
+{
+	var vh_b_check=0;
+	var vh_lv_check=0;
+	var oh_oa_check=0;
+	var oh_ol_check=0;
+	var oh_bl_check=0;
+	var hh_check=0;
+	var lc_check=0;
+	var aav_check=0;
+	var dorf_check=0;
+	
+	if(document.getElementById("vh_b").checked==true)
+	{
+		var vh_b_check=1;
+	}
+	if(document.getElementById("vh_lv").checked==true)
+	{
+		var vh_lv_check=1;
+	}
+	if(document.getElementById("oh_oa").checked==true)
+	{
+		var oh_oa_check=1;
+	}
+	if(document.getElementById("oh_ol").checked==true)
+	{
+		var oh_ol_check=1;
+	}
+	if(document.getElementById("oh_bl").checked==true)
+	{
+		var oh_bl_check=1;
+	}
+	if(document.getElementById("hh").checked==true)
+	{
+		var hh_check=1;
+	}
+	if(document.getElementById("hh_d").checked==true)
+	{
+		var hh_d_check=1;
+	}
+	if(document.getElementById("lc").checked==true)
+	{
+		var lc_check=1;
+	}
+	if(document.getElementById("aav").checked==true)
+	{
+		var aav_check=1;
+	}
+	if(document.getElementById("dorf").checked==true)
+	{
+		var dorf_check=1;
+	}
+	
+	if (document.getElementById(val+"_status").value==0)
+	{
+		document.getElementById("dialog").innerHTML=("Posts are not available for this pwd type");
+		popup_alert(val);
+		document.getElementById(val).checked=false;
+	}
+	else
+	{
+		if(val=='oh_ol' && document.getElementById("oh_bl").checked==true)
+		{
+			document.getElementById("dialog").innerHTML = ("You must select either Locomotor Disability - One Leg (OL) (or) Locomotor Disability - Both Leg (BL)");
+			popup_alert("oh_bl");
+			document.getElementById("oh_bl").checked=false;
+		}
+		if(val=='oh_bl' && document.getElementById("oh_ol").checked==true)
+		{
+			document.getElementById("dialog").innerHTML = ("You must select either Locomotor Disability - One Leg (OL) (or) Locomotor Disability - Both Leg (BL)");
+			popup_alert("oh_ol");
+			document.getElementById("oh_ol").checked=false;
+		}
+		
+		if(val=='vh_b' && document.getElementById("vh_lv").checked==true)
+		{
+			document.getElementById("dialog").innerHTML = ("You must select either Visual Impairment-Blind (B) (or) Visual Impairment-Low Vision (LV)");
+			popup_alert("vh_lv");
+			document.getElementById("vh_lv").checked=false;
+		}
+		if(val=='vh_lv' && document.getElementById("vh_b").checked==true)
+		{
+			document.getElementById("dialog").innerHTML = ("You must select either Visual Impairment-Blind (B) (or) Visual Impairment-Low Vision (LV)");
+			popup_alert("vh_b");
+			document.getElementById("vh_b").checked=false;
+		}
+		
+		if(val=='hh' && document.getElementById("hh_d").checked==true)
+		{
+			document.getElementById("dialog").innerHTML = ("You must select either Hearing Impairment - Deaf (D) (or) Hearing Impairment - Hard of hearing (HH)");
+			popup_alert("hh_d");
+			document.getElementById("hh_d").checked=false;
+		}
+		if(val=='hh_d' && document.getElementById("hh").checked==true)
+		{
+			document.getElementById("dialog").innerHTML = ("You must select either Hearing Impairment - Deaf (D) (or) Hearing Impairment - Hard of hearing (HH)");
+			popup_alert("hh");
+			document.getElementById("hh").checked=false;
+		}
+		
+		if(vh_b_check==1 || vh_lv_check==1 || oh_oa_check==1 || oh_ol_check==1 || oh_bl_check==1 || hh_check==1 || hh_d_check==1 || lc_check==1 || aav_check==1 || dorf_check==1)
+		{
+			var tenth_qualifi=document.getElementById("tenth_qualification").value;
+			var tenth_displain=document.getElementById("tenth_discipline").value;
+			
+			var iti_qualifi=document.getElementById("iti_qualification").value;
+			var dip_qualifi=document.getElementById("diploma_qualification").value;
+			var degree_qualifi=document.getElementById("degree_qualification").value;
+			
+			var iti_displain=document.getElementById("iti_discipline").value;
+			var dip_displain=document.getElementById("diploma_discipline").value;
+			var degree_displain=document.getElementById("degree_discipline").value;
+		
+			xajax_check_pwd_available_status(tenth_qualifi,tenth_displain,iti_qualifi,iti_displain,dip_qualifi,dip_displain,degree_qualifi,degree_displain,vh_b_check,vh_lv_check,oh_oa_check,oh_ol_check,oh_bl_check,hh_check,hh_d_check,lc_check,aav_check,dorf_check,val);
+		}
+		
+		
+	}
+}
+
+function controltype_display(val)
+{
+	document.submit_form.blind.checked=false;
+	document.submit_form.low_vision.checked=false;
+	document.submit_form.ol.checked=false;
+	document.submit_form.oa.checked=false;
+	document.submit_form.oaol.checked=false;
+	document.submit_form.bl.checked=false;
+	document.submit_form.mw.checked=false;
+	
+	if (val=='VH')
+	{
+		$("#vh_type_row").show();
+		$("#oh_type_row").hide();
+	}
+	else if (val=='OH')
+	{
+		$("#oh_type_row").show();
+		$("#vh_type_row").hide();
+	}
+	else
+	{
+		$("#vh_type_row").hide();
+		$("#oh_type_row").hide();
+	}
+	
+}
+function controlscribe_display(val)
+{
+	document.getElementById("scribe_reg_name").value='';
+	document.getElementById("scribe_reg_aadhar").value='';
+	document.getElementById("scribe_reg_father").value='';
+	document.submit_form.scribe_reg_dob_d[0].selected=true;
+	document.submit_form.scribe_reg_dob_m[0].selected=true;
+	document.submit_form.scribe_reg_dob_y[0].selected=true;
+	document.getElementById("scribe_reg_qua").value='';
+	
+	if (val=='Yes')
+	{
+		$("#scribe_type_row").show();
+	}
+	else
+	{
+		$("#scribe_type_row").hide();
+	}
+	
+}
+function controlexmp_display(val)
+{
+	document.getElementById("exmp_service").value='';
+	document.submit_form.exmp_joining_d[0].selected=true;
+	document.submit_form.exmp_joining_m[0].selected=true;
+	document.submit_form.exmp_joining_y[0].selected=true;
+	document.submit_form.exmp_attestation_d[0].selected=true;
+	document.submit_form.exmp_attestation_m[0].selected=true;
+	document.submit_form.exmp_attestation_y[0].selected=true;
+	document.submit_form.exmp_discharge_d[0].selected=true;
+	document.submit_form.exmp_discharge_m[0].selected=true;
+	document.submit_form.exmp_discharge_y[0].selected=true;
+	
+	document.getElementById("discharge_type").value='';
+	document.submit_form.civil_emp[0].checked=false;
+	document.submit_form.civil_emp[1].checked=false;
+	document.getElementById("civil_emp_working").value='';
+	
+	if (val=='Yes')
+	{
+		$("#ex_mp_row").show();
+	}
+	else
+	{
+		$("#ex_mp_row").hide();
+		$(".civil_emp_row").hide();
+	}
+	minority_display();
+}
+function controlcivil_display(val)
+{
+	document.getElementById("civil_emp_working").value='';
+	
+	if (val=='Yes')
+	{
+		$(".civil_emp_row").show();
+	}
+	else
+	{
+		$(".civil_emp_row").hide();
+	}
+}
+function controlapprenti_display(val)
+{
+	//document.getElementById("apprenticeship_rly").value='';
+	document.submit_form.apprenticeship_from_d[0].selected=true;
+	document.submit_form.apprenticeship_from_m[0].selected=true;
+	document.submit_form.apprenticeship_from_y[0].selected=true;
+	document.submit_form.apprenticeship_to_d[0].selected=true;
+	document.submit_form.apprenticeship_to_m[0].selected=true;
+	document.submit_form.apprenticeship_to_y[0].selected=true;
+
+	if (val=='Yes')
+	{
+		$("#apprenticeship_row").show();
+	}
+	else
+	{
+		$("#apprenticeship_row").hide();
+	}
+}
+function controlgovt_display(val)
+{
+	document.getElementById("govt_working").value='';
+	if (val=='Yes')
+	{
+		$("#govt_emp_row").show();
+	}
+	else
+	{
+		$("#govt_emp_row").hide();
+	}
+}
+function controlrly_display(val)
+{
+	document.getElementById("rly").value='';
+	document.submit_form.rly_joining_d[0].selected=true;
+	document.submit_form.rly_joining_m[0].selected=true;
+	document.submit_form.rly_joining_y[0].selected=true;
+	document.submit_form.rly_service[0].checked=false;
+	document.submit_form.rly_service[1].checked=false;
+	
+	if (val=='Yes')
+	{
+		$("#rly_emp_row").show();
+	}
+	else
+	{
+		$("#rly_emp_row").hide();
+	}
+}
+function controlrly_service(val)
+{
+	if (val=='Yes')
+	{
+		$("#rly_service_note").show();
+	}
+	else
+	{
+		$("#rly_service_note").hide();
+	}
+}
+function controlquasi_display(val)
+{
+	document.getElementById("quasi_rly").value='';
+	document.submit_form.quasi_from_d[0].selected=true;
+	document.submit_form.quasi_from_m[0].selected=true;
+	document.submit_form.quasi_from_y[0].selected=true;
+	document.submit_form.quasi_to_d[0].selected=true;
+	document.submit_form.quasi_to_m[0].selected=true;
+	document.submit_form.quasi_to_y[0].selected=true;
+	
+	if (val=='Yes')
+	{
+		$("#quasi_admin_row").show();
+	}
+	else
+	{
+		$("#quasi_admin_row").hide();
+	}
+}
+function controlwidow_display(val)
+{
+	document.getElementById("widow_divorce_type").value='';
+	
+	if (val=='Yes')
+	{
+		$("#widow_divorce_judicially_row").show();
+	}
+	else
+	{
+		$("#widow_divorce_judicially_row").hide();
+	}
+}
+function controlebc_display(val)
+{
+	document.submit_form.refund[0].checked=false;
+	document.submit_form.refund[1].checked=false;
+	document.getElementById("ebc_cardno").value='';
+	document.getElementById("ebc_income").value='';
+	document.getElementById("ebc_state").value='';
+	document.submit_form.ebc_issue_d[0].selected=true;
+	document.submit_form.ebc_issue_m[0].selected=true;
+	document.submit_form.ebc_issue_y[0].selected=true;
+	$("#refund_row").hide();
+	
+	
+	if (val=='Yes' && document.getElementById("reservation").value!='SC' && document.getElementById("reservation").value!='ST' && document.submit_form.ex_military[1].checked==true &&  document.submit_form.pwd[1].checked==true &&  document.getElementById("gender").value!='Female' &&  document.getElementById("gender").value!='Transgender' && (document.submit_form.minority_can[1].checked==true || (document.submit_form.minority_can[1].checked==false && document.submit_form.minority_can[0].checked==false) ))
+	{
+		$("#refund_facility_row").show();
+	}
+	else
+	{
+		$("#refund_facility_row").hide();
+	}
+	
+}
+function controlrefund_display(val)
+{
+	document.getElementById("ebc_cardno").value='';
+	document.getElementById("ebc_income").value='';
+	document.getElementById("ebc_state").value='';
+	document.submit_form.ebc_issue_d[0].selected=true;
+	document.submit_form.ebc_issue_m[0].selected=true;
+	document.submit_form.ebc_issue_y[0].selected=true;
+	
+	if(document.getElementById("reservation").value!='SC' && document.getElementById("reservation").value!='ST' && document.submit_form.ex_military[1].checked==true &&  document.submit_form.pwd[1].checked==true &&  document.getElementById("gender").value!='Female' &&  document.getElementById("gender").value!='Transgender'  && (document.submit_form.minority_can[1].checked==true || (document.submit_form.minority_can[1].checked==false && document.submit_form.minority_can[0].checked==false) ))
+	{
+		if (val=='Yes')
+		{
+			$("#refund_row").show();
+		}
+		else
+		{
+			$("#refund_row").hide();
+		}
+	}
+	else
+	{
+		document.submit_form.refund[0].checked=false;
+		document.submit_form.refund[1].checked=false;
+		$("#refund_row").hide();
+		document.getElementById("dialog").innerHTML=("Yor are not eligible to avail fee concession and refund facility");
+		popup_alert("refund");
+	}
+}
+function controlother_display(val)
+{
+	minority_display();
+}
+function controlecgpa_sslc(val)
+{
+	document.getElementById("sslc_percentage").value='';
+	if (val==1)
+	{
+		$("#sslc_cgpa_row").show();
+		$("#sslc_percentage_row").hide();
+	}
+	else
+	{
+		$("#sslc_cgpa_row").hide();
+		$("#sslc_percentage_row").show();
+	}
+}
+function controltravel_display(val)
+{
+	document.getElementById("rly_pass_certi_no").value='';
+	document.submit_form.rly_pass_date_d[0].selected=true;
+	document.submit_form.rly_pass_date_m[0].selected=true;
+	document.submit_form.rly_pass_date_y[0].selected=true;
+	document.getElementById("rly_pass_issue").value='';
+	document.getElementById("rly_pass_place").value='';
+	document.getElementById("rly_pass_state").value='';
+	document.getElementById("pre_rly_station").value='';
+	if (val=='Yes')
+	{
+		$("#rly_pass_row").show();
+	}
+	else
+	{
+		$("#rly_pass_row").hide();
+	}
+}
+function controlecgpa_qua(val)
+{
+	document.getElementById("qua_percentage").value='';
+	if (val==1)
+	{
+		$("#qua_cgpa_row").show();
+		$("#qua_percentage_row").hide();
+	}
+	else
+	{
+		$("#qua_cgpa_row").hide();
+		$("#qua_percentage_row").show();
+	}
+}
+function change_higher_qua_type(val)
+{
+	document.getElementById("higher_qua_type_others").value='';
+	
+	if (val=='Others')
+	{
+		$(".higher_qua_type_others_row").show();
+	}
+	else
+	{
+		$(".higher_qua_type_others_row").hide();
+	}
+}
+function change_higher_qua(val)
+{
+	document.getElementById("higher_qua_others").value='';
+	
+	if (val=='Others')
+	{
+		$(".higher_qua_others_row").show();
+	}
+	else
+	{
+		$(".higher_qua_others_row").hide();
+	}
+}
+function controliti_cgpa(val)
+{
+	document.getElementById("iti_percentage").value='';
+	document.getElementById("iti_cgpa_percentage").value='';
+	if (val=='CGPA')
+	{
+		$(".iti_cgpa_row1").show();
+		$(".iti_cgpa_row").hide();
+	}
+	else if (val=='Percentage')
+	{
+		$(".iti_cgpa_row1").hide();
+		$(".iti_cgpa_row").show();
+	}
+	else
+	{
+		$(".iti_cgpa_row1").hide();
+		$(".iti_cgpa_row").hide();
+	}
+}
+function controltenth_cgpa(val)
+{
+	document.getElementById("tenth_percentage").value='';
+	document.getElementById("tenth_cgpa_percentage").value='';
+	if (val=='CGPA')
+	{
+		$(".tenth_cgpa_row1").show();
+		$(".tenth_cgpa_row").hide();
+	}
+	else if (val=='Percentage')
+	{
+		$(".tenth_cgpa_row1").hide();
+		$(".tenth_cgpa_row").show();
+	}
+	else
+	{
+		$(".tenth_cgpa_row1").hide();
+		$(".tenth_cgpa_row").hide();
+	}
+}
+function controldiploma_cgpa(val)
+{
+	document.getElementById("diploma_percentage").value='';
+	document.getElementById("diploma_cgpa_percentage").value='';
+	
+	if (val=='CGPA')
+	{
+		$(".diploma_cgpa_row1").show();
+		$(".diploma_cgpa_row").hide();
+	}
+	else if (val=='Percentage')
+	{
+		$(".diploma_cgpa_row1").hide();
+		$(".diploma_cgpa_row").show();
+	}
+	else
+	{
+		$(".diploma_cgpa_row1").hide();
+		$(".diploma_cgpa_row").hide();
+	}
+}
+function controldegree_cgpa(val)
+{
+	document.getElementById("degree_percentage").value='';
+	document.getElementById("degree_cgpa_percentage").value='';
+	
+	if (val=='CGPA')
+	{
+		$(".degree_cgpa_row1").show();
+		$(".degree_cgpa_row").hide();
+	}
+	else if (val=='Percentage')
+	{
+		$(".degree_cgpa_row1").hide();
+		$(".degree_cgpa_row").show();
+	}
+	else
+	{
+		$(".degree_cgpa_row1").hide();
+		$(".degree_cgpa_row").hide();
+	}
+}
+function controlsslc_cgpa(val)
+{
+	document.getElementById("sslc_percentage").value='';
+	document.getElementById("sslc_cgpa_percentage").value='';
+	
+	if (val=='CGPA')
+	{
+		$(".sslc_cgpa_row1").show();
+		$(".sslc_cgpa_row").hide();
+	}
+	else if (val=='Percentage')
+	{
+		$(".sslc_cgpa_row1").hide();
+		$(".sslc_cgpa_row").show();
+	}
+	else
+	{
+		$(".sslc_cgpa_row1").hide();
+		$(".sslc_cgpa_row").hide();
+	}
+	
+	
+}
+function minority_display()
+{
+	if(document.getElementById("reservation").value!='SC' && document.getElementById("reservation").value!='ST' && document.submit_form.ex_military[1].checked==true &&  document.submit_form.pwd[1].checked==true &&  document.getElementById("gender").value!='Female' &&  document.getElementById("gender").value!='Transgender' &&  document.getElementById("religion").value!='Hindu')
+	{
+		$("#minority_row").show();
+		if(document.submit_form.ebc[0].checked==true)
+		{
+			controlebc_display('Yes');
+		}
+	}
+	else
+	{
+		$("#minority_row").hide();
+		document.submit_form.minority_can[0].checked=false;
+		document.submit_form.minority_can[1].checked=false;
+		controlebc_display('No');
+	}
+	
+	if(document.getElementById("reservation").value!='SC' && document.getElementById("reservation").value!='ST' && document.submit_form.ex_military[1].checked==true &&  document.submit_form.pwd[1].checked==true &&  document.getElementById("gender").value!='Female' &&  document.getElementById("gender").value!='Transgender'  && (document.submit_form.minority_can[1].checked==true || (document.submit_form.minority_can[1].checked==false && document.submit_form.minority_can[0].checked==false) ) && document.submit_form.ebc[0].checked==true)
+	{
+		$("#refund_facility_row").show();
+	}
+	else
+	{
+		$("#refund_facility_row").hide();
+	}
+	
+}
+function controlminor_refund(val)
+{
+	if(val=='Yes')
+	{
+		controlebc_display('No');
+	}
+	else
+	{
+		if(document.submit_form.ebc[0].checked==true)
+		{
+			controlebc_display('Yes');
+		}
+	}
+}
+function controlsame_address(val)
+{
+	if(val==1)
+	{
+		document.getElementById("per_address1").value=document.getElementById("pre_address1").value;
+		document.getElementById("per_address2").value=document.getElementById("pre_address2").value;
+		document.getElementById("per_address3").value=document.getElementById("pre_address3").value;
+		
+		document.getElementById("per_state_name").value=document.getElementById("pre_state_name").value;
+		document.getElementById("per_district").value=document.getElementById("pre_district").value;
+		document.getElementById("per_city").value=document.getElementById("pre_city").value;
+		document.getElementById("per_city_oth").value=document.getElementById("pre_city_oth").value;
+		document.getElementById("per_pincode").value=document.getElementById("pre_pincode").value;
+		document.getElementById("per_rly_station").value=document.getElementById("pre_rly_station").value;
+	}
+	else
+	{
+		document.getElementById("per_address1").value='';
+		document.getElementById("per_address2").value='';
+		document.getElementById("per_address3").value='';
+		
+		document.getElementById("per_state_name").value='';
+		document.getElementById("per_district").value='';
+		document.getElementById("per_city").value='';
+		document.getElementById("per_city_oth").value='';
+		document.getElementById("per_pincode").value='';
+		document.getElementById("per_rly_station").value='';
+	}
+}
+function checkAge(dateString,lastdate)
+{
+    var now = new Date();
+    //var today = new Date(now.getFullYear(),now.getMonth(),now.getDate());
+	
+	var lastda=lastdate.split('-');	
+	var yearNow = parseInt(lastda[2]);
+    var monthNow = parseInt(lastda[1]);
+    var dateNow = parseInt(lastda[0]);
+
+   	//var yearNow = now.getFullYear();
+    //var monthNow = now.getMonth()+1;
+    //var dateNow = now.getDate();
+
+	var dob=dateString.split('-');	
+    var yearDob = parseInt(dob[2]);
+    var monthDob = parseInt(dob[1]);
+    var dateDob = parseInt(dob[0]); 
+		
+    yearAge = yearNow - yearDob;
+
+    if (monthNow >= monthDob)
+	{
+        var monthAge = monthNow - monthDob;
+	}
+    else 
+	{
+        yearAge--;
+        var monthAge = 12 + monthNow -monthDob;
+    }
+    if (dateNow >= dateDob)
+	{
+        var dateAge = dateNow - dateDob;
+	}
+    else 
+	{
+        monthAge--;
+        var dateAge = 31 + dateNow - dateDob;
+
+        if (monthAge < 0) 
+		{
+            monthAge = 11;
+            yearAge--;
+        }
+    }
+    if(yearAge<0)
+	{
+		yearAge=0;
+	}
+	//var FinalAge = yearAge+" years, "+monthAge+" months, "+dateAge+" days";
+	var FinalAge = yearAge+"-"+monthAge+"-"+dateAge;
+	return FinalAge;
+}
+
+function init3()
+{
+	if (document.getElementById("dob_d").value!="")
+	{
+		change_day_onload("dob", document.getElementById("dob_d").value, document.getElementById("dob_m").value);
+	}
+	if (document.getElementById("dob_d").value!="" && document.getElementById("dob_m").value!="")
+	{
+		change_month_onload("dob", document.getElementById("dob_d").value, document.getElementById("dob_m").value, document.getElementById("dob_y").value);
+	}
+	display_age_calc();
+}
+
+function display_district(state, district) 
+{
+	document.getElementById(district).value='';
+
+	var select2 = document.getElementById(district);
+	select2.options.length = 0;
+	select2.options[select2.options.length] = new Option('select', '');
+	
+	if(state!='')
+	{
+		display_district_ajax(state,district);
+    	//xajax_district_display(state, district);
+	}
+}
+function display_city(district, city) 
+{
+	document.getElementById(city).value='';
+
+	var select2 = document.getElementById(city);
+	select2.options.length = 0;
+	select2.options[select2.options.length] = new Option('select', '');
+	var state=document.getElementById("pre_state_name").value;
+	if(state!='' && district!='')
+	{
+    	xajax_city_display(state, district,city);
+	}
+}
+function checkphoto()
+{
+	var id1 = document.getElementById("photo").value;
+	var dot = id1.lastIndexOf('.')
+	var ext = id1.substring(dot+1);
+	ext=ext.toUpperCase();
+	
+	if(ext=='') 
+	{
+		 document.getElementById("dialog").innerHTML=("Please select your Photo with Signature");
+		 popup_alert("photo");
+		 return false;
+	} 
+	else if(ext != "JPG" && ext != "JPEG")
+	{
+		 document.getElementById("dialog").innerHTML=("Use JPG / JPEG formats only for Photo with Signature");
+		 popup_alert("photo");
+		 return false;
+	}
+		
+	var fi = document.getElementById("photo");
+	if(((fi.files[0].size)/1000)>30) 
+	{
+		 document.getElementById("dialog").innerHTML=("Photo with Signature image size must be lesser than 30kb");
+		 popup_alert("photo");
+		 return false;
+	}	
+	if(((fi.files[0].size)/1000)<10) 
+	{
+		 document.getElementById("dialog").innerHTML=("Photo with Signature image size must be greater than 10kb");
+		 popup_alert("photo");
+		 return false;
+	}		
+}
+function checkvalues_page0(x, id_value) 
+{
+	var dob_age=document.getElementById("dob_age").value;
+    var minage=document.getElementById("min_age").value;
+    var maxagegm=document.getElementById("maxageur").value;
+    var maxageab=document.getElementById("maxageobc").value;
+    var maxagescst=document.getElementById("maxagescst").value;
+    dob_ages=dob_age.split("-");
+	dob_ages1=dob_ages[1] + "-" + dob_ages[2] + "-" + dob_ages[0];
+   
+    minage1=minage.replace(/-/g, "/");
+    maxagegm1=maxagegm.replace(/-/g, "/");
+    maxageab1=maxageab.replace(/-/g, "/");
+    maxagescst1=maxagescst.replace(/-/g, "/");
+    dob_ages2=dob_ages1.replace(/-/g, "/");
+   
+    var dob_date=new Date(dob_ages2);
+	var min_age=new Date(minage1);
+    var maxage_ur=new Date(maxagegm1);
+    var maxage_obc=new Date(maxageab1);
+    var maxage_scst=new Date(maxagescst1);
+	
+    var lastdate=document.getElementById("lastdate_submit").value;
+    last_dates=lastdate.split("-");
+    lastdate1=last_dates[1] + "/" + last_dates[0] + "/" + last_dates[2];
+	
+    var ld=new Date(lastdate1);
+	
+	if(document.submit_form.application_edit_status.value==1)
+	{
+		if(x > 0.01)
+		{
+			if (document.submit_form.fullname.value == '') 
+			{
+				document.getElementById("dialog").innerHTML = ("You must enter your full name");
+				popup_alert("fullname");
+				return false;
+			}
+		}
+		if(x > 0.02)
+		{
+			if(document.submit_form.dob_m[0].selected == true || document.submit_form.dob_d[0].selected == true || document.submit_form.dob_y[0].selected == true)
+			{
+				document.getElementById("dialog").innerHTML = ("You Must Select Your Date of Birth");
+				popup_alert("dob_m");
+				return false;
+			}
+			dob_reg = document.getElementById("dob_d").value + "-" + document.getElementById("dob_m").value + "-" + document.getElementById("dob_y").value;
+			if (!isDate(dob_reg))
+			{
+				return false;
+			}
+			var newdob_reg = document.getElementById("dob_m").value + "/" + document.getElementById("dob_d").value + "/" + document.getElementById("dob_y").value;
+			var dob_date = new Date(newdob_reg);
+			if (dob_date > min_age)
+			{
+				document.getElementById("dialog").innerHTML = ("You Are Not Eligible To Apply For This Notification As You Are Under Aged");
+				uncheck_radio(x, id_value);  popup_alert("dob_y");
+				return false;
+			}
+		}
+		
+		if(x > 0.03)
+		{
+			if (document.submit_form.aadhar_no.value != '')
+			{
+				if (isNaN(document.submit_form.aadhar_no.value))
+				{
+					document.getElementById("dialog").innerHTML = ("Aadhar Number must contain only numbers");
+					popup_alert("aadhar_no");
+					return false;
+				}
+				else if (document.submit_form.aadhar_no.value.length != 12)
+				{
+					document.getElementById("dialog").innerHTML = ("Aadhar Number must contain 12 digits");
+					popup_alert("aadhar_no");
+					return false;
+				}
+			}
+		}
+		if(x > 0.04)
+		{
+			if (document.submit_form.fathername.value == '')
+			{
+				document.getElementById("dialog").innerHTML = ("You must enter your Father Name ");
+				popup_alert("fathername");
+				return false;
+			}
+		}
+		if(x > 0.05)
+		{
+			if (document.submit_form.mothername.value == '')
+			{
+				document.getElementById("dialog").innerHTML = ("You must enter your Mother Name ");
+				popup_alert("mothername");
+				return false;
+			}
+		}
+		if(x > 0.06)
+		{
+			if (document.submit_form.sslc_board.value == '') 
+			{
+				document.getElementById("dialog").innerHTML = ("You must select your  Matriculation / SSLC Board");
+				popup_alert("sslc_board");
+				return false;
+			}
+		}
+		if(x > 0.07)
+		{
+			if (document.submit_form.sslc_reg_no.value == '') 
+			{
+				document.getElementById("dialog").innerHTML = ("You must enter your  Matriculation / SSLC Roll No");
+				popup_alert("sslc_reg_no");
+				return false;
+			}
+		}
+		if(x > 0.08)
+		{
+			if (document.submit_form.sslc_passing.value == '') 
+			{
+				document.getElementById("dialog").innerHTML = ("You must select SSLC / Matriculation Year of Passing");
+				popup_alert("sslc_passing");
+				return false;
+			}
+			if (document.submit_form.sslc_passing.value < document.getElementById("dob_y").value) 
+			{
+				document.getElementById("dialog").innerHTML = ("You must select SSLC / Matriculation Year  of Passing must be greater than your Date of Birth");
+				popup_alert("sslc_passing");
+				return false;
+			}
+		}
+	}
+	if(x > 1)
+	{
+		if (document.submit_form.sslc_qualification[0].selected==true)
+		{
+			document.getElementById("dialog").innerHTML=("You must select your SSLC qualification name");
+			uncheck_radio(x, id_value); popup_alert("sslc_qualification");
+			return false;
+		}
+	}
+	if (document.submit_form.tenth_qualification[0].selected==false || document.submit_form.tenth_discipline[0].selected==false || document.submit_form.tenth_exam_trade[0].selected==false)
+	{
+		
+		if(x > 1.01)
+		{
+			if (document.submit_form.tenth_qualification[0].selected==true)
+			{
+				document.submit_form.iti_discipline[0].selected=true;
+				document.getElementById("dialog").innerHTML=("You must select 10+2");
+				uncheck_radio(x, id_value); popup_alert("tenth_qualification");
+				return false;
+			}
+		}
+		if(x > 1.1)
+		{
+			if (document.submit_form.tenth_discipline[0].selected==true)
+			{
+				document.getElementById("dialog").innerHTML=("You must select 10+2 Subject");
+				uncheck_radio(x, id_value); popup_alert("tenth_discipline");
+				return false;
+			}
+		}
+		if(x > 1.11)
+		{
+			if (document.submit_form.tenth_exam_trade[0].selected==true)
+			{
+				document.getElementById("dialog").innerHTML=("You must select 10+2 Exam Trade");
+				uncheck_radio(x, id_value); popup_alert("tenth_exam_trade");
+				return false;
+			}
+		}
+	}
+	
+	
+	if (document.submit_form.iti_qualification[0].selected==false || document.submit_form.iti_discipline[0].selected==false)
+	{
+		if(x > 1.2)
+		{
+			if (document.submit_form.iti_qualification[0].selected==true)
+			{
+				document.submit_form.iti_discipline[0].selected=true;
+				document.getElementById("dialog").innerHTML=("You must select ITI/NAC qualification");
+				uncheck_radio(x, id_value); popup_alert("iti_qualification");
+				return false;
+			}
+		}
+		if(x > 1.3)
+		{
+			if (document.submit_form.iti_discipline[0].selected==true)
+			{
+				document.getElementById("dialog").innerHTML=("You must select ITI/NAC trade");
+				uncheck_radio(x, id_value); popup_alert("iti_discipline");
+				return false;
+			}
+		}
+		if(x > 1.4)
+		{
+			if (document.submit_form.iti_exam_trade[0].selected==true)
+			{
+				document.getElementById("dialog").innerHTML=("You must select ITI/NAC exam trade");
+				uncheck_radio(x, id_value); popup_alert("iti_exam_trade");
+				return false;
+			}
+			if(document.submit_form.iti_discipline.value!=document.submit_form.iti_exam_trade.value)
+			{
+				document.getElementById("dialog").innerHTML=("You must select ITI/NAC exam trade from given options");
+				uncheck_radio(x, id_value); popup_alert("iti_exam_trade");
+				return false;
+			}
+		}
+	}
+	
+	if (document.submit_form.diploma_qualification[0].selected==false || document.submit_form.diploma_discipline[0].selected==false || document.submit_form.diploma_exam_trade[0].selected==false)
+	{
+		if(x > 1.5)
+		{
+			if (document.submit_form.diploma_qualification[0].selected==true)
+			{
+				document.submit_form.diploma_discipline[0].selected=true;
+				document.getElementById("dialog").innerHTML=("You must select diploma qualification");
+				uncheck_radio(x, id_value); popup_alert("diploma_qualification");
+				return false;
+			}
+		}
+		if(x > 1.6)
+		{
+			if (document.submit_form.diploma_discipline[0].selected==true)
+			{
+				document.getElementById("dialog").innerHTML=("You must select diploma discipline");
+				uncheck_radio(x, id_value); popup_alert("diploma_discipline");
+				return false;
+			}
+		}
+		if(x > 1.61)
+		{
+			if(document.submit_form.diploma_discipline.value=='Other streams of Automobile' || document.submit_form.diploma_discipline.value=='Other streams of  Electrical' || document.submit_form.diploma_discipline.value=='Other streams of Electronics' || document.submit_form.diploma_discipline.value=='Other streams of  Mechanical')
+			{
+				if(document.submit_form.diploma_other_discipline.value=='')
+				{
+					document.getElementById("dialog").innerHTML=("You must enter Other discipline of diploma");
+					uncheck_radio(x, id_value); popup_alert("diploma_other_discipline");
+					return false;
+				}
+			}
+		}
+		
+		if(x > 1.7)
+		{
+			if (document.submit_form.diploma_exam_trade[0].selected==true)
+			{
+				document.getElementById("dialog").innerHTML=("You must select diploma exam trade");
+				uncheck_radio(x, id_value); popup_alert("diploma_exam_trade");
+				return false;
+			}
+		}
+	}
+	
+	if (document.submit_form.degree_qualification[0].selected==false || document.submit_form.degree_discipline[0].selected==false || document.submit_form.degree_exam_trade[0].selected==false)
+	{
+		if(x > 1.8)
+		{
+			if (document.submit_form.degree_qualification[0].selected==true)
+			{
+				document.submit_form.degree_discipline[0].selected=true;
+				document.getElementById("dialog").innerHTML=("You must select degree qualification");
+				uncheck_radio(x, id_value); popup_alert("degree_qualification");
+				return false;
+			}
+		}
+		if(x > 1.9)
+		{
+			if (document.submit_form.degree_discipline[0].selected==true)
+			{
+				document.getElementById("dialog").innerHTML=("You must select degree discipline");
+				uncheck_radio(x, id_value); popup_alert("degree_discipline");
+				return false;
+			}
+		}
+		if(x > 1.91)
+		{
+			if(document.submit_form.degree_discipline.value=='Other streams of Automobile' || document.submit_form.degree_discipline.value=='Other streams of  Electrical' || document.submit_form.degree_discipline.value=='Other streams of Electronics' || document.submit_form.degree_discipline.value=='Other streams of  Mechanical')
+			{
+				if(document.submit_form.degree_other_discipline.value=='')
+				{
+					document.getElementById("dialog").innerHTML=("You must enter Other discipline of degree");
+					uncheck_radio(x, id_value); popup_alert("degree_other_discipline");
+					return false;
+				}
+			}
+		}
+		if(x > 2)
+		{
+			if (document.submit_form.degree_exam_trade[0].selected==true)
+			{
+				document.getElementById("dialog").innerHTML=("You must select degree exam trade");
+				uncheck_radio(x, id_value); popup_alert("degree_exam_trade");
+				return false;
+			}
+		}
+	}
+	/*if(x > 2.01)
+	{
+		var exam_select =0;
+		if(document.submit_form.tenth_exam_trade[0].selected!=true)
+		{
+			exam_select =exam_select+1;
+		}
+		if(document.submit_form.iti_exam_trade[0].selected!=true)
+		{
+			exam_select =exam_select+1;
+		}
+		if(document.submit_form.diploma_exam_trade[0].selected!=true)
+		{
+			exam_select =exam_select+1;
+		}
+		if(document.submit_form.degree_exam_trade[0].selected!=true)
+		{
+			exam_select =exam_select+1;
+		}
+		if(exam_select==0)
+		{
+			document.getElementById("dialog").innerHTML=("You must select one exam trade");
+			uncheck_radio(x, id_value); popup_alert("degree_exam_trade");
+			return false;
+		}
+		if(exam_select>1)
+		{
+			document.getElementById("dialog").innerHTML=("You must select only one exam trade");
+			uncheck_radio(x, id_value); popup_alert("degree_exam_trade");
+			return false;
+		}
+	}*/
+	
+	if(x > 2.1)
+	{
+		if (document.submit_form.tenth_qualification[0].selected==true && document.submit_form.iti_qualification[0].selected==true && document.submit_form.diploma_qualification[0].selected==true && document.submit_form.degree_qualification[0].selected==true)
+		{
+			document.getElementById("dialog").innerHTML=("You must select Atleast one qualification");
+		    uncheck_radio(x, id_value); popup_alert("iti_qualification");
+			return false;
+		}
+	}
+	if(x > 2.2)
+	{
+		if (document.submit_form.nationality[0].selected==true)
+		{
+			document.getElementById("dialog").innerHTML=("You must select your nationality");
+		    uncheck_radio(x, id_value); popup_alert("nationality");
+			return false;
+		}
+	}
+	
+	if(x > 3)
+	{
+		if (document.submit_form.reservation[0].selected==true)
+		{
+			document.getElementById("dialog").innerHTML=("You must select your community name");
+		    uncheck_radio(x, id_value); popup_alert("reservation");
+			return false;
+		}
+	}
+	
+	if (document.submit_form.reservation.value=='SC' || document.submit_form.reservation.value=='ST' || document.submit_form.reservation.value=='OBC-NON CREAMY LAYER')
+	{
+		if(x > 4)
+		{
+			if (document.submit_form.caste_state.value=='')
+			{
+				document.getElementById("dialog").innerHTML=("You must select the state");
+				uncheck_radio(x, id_value); popup_alert("caste_state");
+				return false;
+			}
+		}
+		if(x > 5)
+		{
+			if (document.submit_form.caste_district.value=='')
+			{
+				document.getElementById("dialog").innerHTML=("You must select the district");
+				uncheck_radio(x, id_value); popup_alert("caste_district");
+				return false;
+			}
+		}
+		if(x > 6)
+		{
+			if (document.submit_form.caste.value=='')
+			{
+				document.getElementById("dialog").innerHTML=("You must enter your caste name");
+				uncheck_radio(x, id_value); popup_alert("caste");
+				return false;
+			}
+		}
+	}
+	
+	if(x > 7)
+	{
+		if (document.submit_form.gender[0].selected==true)
+		{
+			document.getElementById("dialog").innerHTML=("You must select your gender");
+		    uncheck_radio(x, id_value); popup_alert("gender");
+			return false;
+		}
+	}
+	if(x > 8)
+	{
+		if (document.submit_form.religion[0].selected==true)
+		{
+			document.getElementById("dialog").innerHTML=("You must select your religion");
+			uncheck_radio(x, id_value); popup_alert("religion");
+			return false;
+		}
+	}
+	
+	if(x > 10)
+	{
+		if (document.submit_form.pwd[0].checked==false && document.submit_form.pwd[1].checked==false)
+		{
+			document.getElementById("dialog").innerHTML=("You must select whether you are a PWD Candidate or not");
+			uncheck_radio(x, id_value); popup_alert("pwd");
+			return false;
+		}
+	}
+	
+	if (document.submit_form.pwd[0].checked==true)
+	{
+		if(x > 11)
+		{
+			var option_chk1=0
+			
+			if (document.getElementById("vh_b").checked==true)
+			{ 
+				option_chk1=1;
+			}
+			if (document.getElementById("vh_lv").checked==true)
+			{ 
+				option_chk1=1;
+			}
+			if (document.getElementById("oh_oa").checked==true)
+			{ 
+				option_chk1=1;
+			}
+			if (document.getElementById("oh_ol").checked==true)
+			{ 
+				option_chk1=1;
+			}
+			if (document.getElementById("oh_bl").checked==true)
+			{ 
+				option_chk1=1;
+			}
+			if (document.getElementById("hh").checked==true)
+			{ 
+				option_chk1=1;
+			}
+			
+			if (document.getElementById("hh_d").checked==true)
+			{ 
+				option_chk1=1;
+			}
+			if (document.getElementById("lc").checked==true)
+			{ 
+				option_chk1=1;
+			}
+			if (document.getElementById("aav").checked==true)
+			{ 
+				option_chk1=1;
+			}
+			if (document.getElementById("dorf").checked==true)
+			{ 
+				option_chk1=1;
+			}
+			
+			if (option_chk1==0)
+			{
+				document.getElementById("dialog").innerHTML=("You must select atleast one type of disability");
+				uncheck_radio(x, id_value); popup_alert("pwd");
+				return false;
+			}
+			
+			if(document.getElementById("oh_ol").checked==true && document.getElementById("oh_bl").checked==true)
+			{
+				document.getElementById("dialog").innerHTML=("You must select either Locomotor Disability - One Leg (OL) (or) Locomotor Disability - Both Leg (BL)");
+				uncheck_radio(x, id_value); popup_alert("pwd");
+				return false;
+			}
+			
+			if(document.getElementById("vh_b").checked==true && document.getElementById("vh_lv").checked==true)
+			{
+				document.getElementById("dialog").innerHTML=("You must select either Visual Impairment-Blind (B) (or) Visual Impairment-Low Vision (LV)");
+				uncheck_radio(x, id_value); popup_alert("pwd");
+				return false;
+			}
+			if(document.getElementById("hh").checked==true && document.getElementById("hh_d").checked==true)
+			{
+				document.getElementById("dialog").innerHTML=("You must select either Hearing Impairment - Deaf (D) (or) Hearing Impairment - Hard of hearing (HH)");
+				uncheck_radio(x, id_value); popup_alert("pwd");
+				return false;
+			}
+		}
+		if(x > 12)
+		{
+			if (document.submit_form.pwd_cer_no.value=='')
+			{
+				document.getElementById("dialog").innerHTML=("You must enter your pwd certificate no");
+				uncheck_radio(x, id_value); popup_alert("pwd_cer_no");
+				return false;
+			}
+		}
+		if(x > 13)
+		{
+			
+			
+			if(document.submit_form.pwd_issue_date_d[0].selected == true || document.submit_form.pwd_issue_date_m[0].selected == true || document.submit_form.pwd_issue_date_y[0].selected == true)
+			{
+				document.getElementById("dialog").innerHTML = ("pwd certificate issue Date must be Entered");
+				uncheck_radio(x, id_value); popup_alert("pwd_issue_date_m");
+				return false;
+			}
+			pwd_issue_date = document.getElementById("pwd_issue_date_d").value + "-" + document.getElementById("pwd_issue_date_m").value + "-" + document.getElementById("pwd_issue_date_y").value;
+			if (!isDate(pwd_issue_date))
+			{
+				return false;
+			}
+			var pwd_issue_date1=convertdate(pwd_issue_date);
+			if (pwd_issue_date1 > ld)
+			{
+				document.getElementById("dialog").innerHTML=("pwd certificate issue Date must be on or before closing date of CEN");
+				uncheck_radio(x, id_value);  popup_alert("pwd_issue_date_y");
+				return false;
+			}
+		}
+		if(x > 16)
+		{
+			if (document.submit_form.pwd_state[0].selected==true)
+			{
+				document.getElementById("dialog").innerHTML=("You must select state");
+				uncheck_radio(x, id_value); popup_alert("pwd_state");
+				return false;
+			}
+		}
+		if(x > 17)
+		{
+			if (document.submit_form.pwd_district[0].selected==true)
+			{
+				document.getElementById("dialog").innerHTML=("You must select district");
+				uncheck_radio(x, id_value); popup_alert("pwd_district");
+				return false;
+			}
+		}
+	}
+	if(x > 19)
+	{
+		if (document.submit_form.ex_military[0].checked==false && document.submit_form.ex_military[1].checked==false)
+		{
+			document.getElementById("dialog").innerHTML=("You must select whether you are EX-Servicemen or not");
+			uncheck_radio(x, id_value); popup_alert("ex_military");
+			return false;
+		}
+	}
+	if (document.submit_form.ex_military[0].checked==true)
+	{
+		if(x > 20)
+		{
+			if (document.submit_form.exmp_service[0].selected==true)
+			{
+				document.getElementById("dialog").innerHTML=("You must select Service");
+				uncheck_radio(x, id_value); popup_alert("exmp_service");
+				return false;
+			}
+		}
+		
+		if(x > 22)
+		{
+			
+			
+			if(document.submit_form.exmp_joining_d[0].selected == true || document.submit_form.exmp_joining_m[0].selected == true || document.submit_form.exmp_joining_y[0].selected == true)
+			{
+				document.getElementById("dialog").innerHTML = ("Joining Date must be Entered");
+				uncheck_radio(x, id_value); popup_alert("exmp_joining_m");
+				return false;
+			}
+			exmp_joining_date = document.getElementById("exmp_joining_d").value + "-" + document.getElementById("exmp_joining_m").value + "-" + document.getElementById("exmp_joining_y").value;
+			if (!isDate(exmp_joining_date))
+			{
+				return false;
+			}
+			var exmp_joining_date1=convertdate(exmp_joining_date);
+			
+			if (exmp_joining_date1 > ld)
+			{
+				document.getElementById("dialog").innerHTML=("Joining Date must be prior to CEN");
+				uncheck_radio(x, id_value);  popup_alert("exmp_joining_y");
+				return false;
+			}
+		}
+		if(x > 23)
+		{
+			if(document.submit_form.exmp_attestation_d[0].selected == true || document.submit_form.exmp_attestation_m[0].selected == true || document.submit_form.exmp_attestation_y[0].selected == true)
+			{
+				document.getElementById("dialog").innerHTML = ("Attestaion Date must be Entered");
+				uncheck_radio(x, id_value); popup_alert("exmp_attestation_d");
+				return false;
+			}
+			exmp_attestation_date = document.getElementById("exmp_attestation_d").value + "-" + document.getElementById("exmp_attestation_m").value + "-" + document.getElementById("exmp_attestation_y").value;
+			if (!isDate(exmp_attestation_date))
+			{
+				return false;
+			}
+			var exmp_attestation_date1=convertdate(exmp_attestation_date);
+			if(document.getElementById("exmp_attestation_y").value!='')
+			{
+				if (exmp_attestation_date1 < exmp_joining_date1)
+				{
+					document.getElementById("dialog").innerHTML=("Attestaion Date must be Greater Than or equal to Joining Date");
+					uncheck_radio(x, id_value);  popup_alert("exmp_attestation_y");
+					return false;
+				}
+			}
+			if (exmp_attestation_date1 > ld)
+			{
+				document.getElementById("dialog").innerHTML=("Attestaion Date must be perior to CEN");
+				uncheck_radio(x, id_value);  popup_alert("exmp_attestation_y");
+				return false;
+			}
+		}
+		if(x > 24)
+		{
+			if(document.submit_form.exmp_discharge_d[0].selected == true || document.submit_form.exmp_discharge_m[0].selected == true || document.submit_form.exmp_discharge_y[0].selected == true)
+			{
+				document.getElementById("dialog").innerHTML = ("Discharge Date must be Entered");
+				uncheck_radio(x, id_value); popup_alert("exmp_discharge_d");
+				return false;
+			}
+			exmp_discharge_date = document.getElementById("exmp_discharge_d").value + "-" + document.getElementById("exmp_discharge_m").value + "-" + document.getElementById("exmp_discharge_y").value;
+			if (!isDate(exmp_discharge_date))
+			{
+				return false;
+			}
+			var exmp_discharge_date1=convertdate(exmp_discharge_date);
+			
+			if (exmp_discharge_date1 < exmp_attestation_date1)
+			{
+				document.getElementById("dialog").innerHTML=("Discharge Date must be Greater Than Attestation Date");
+				uncheck_radio(x, id_value);  popup_alert("exmp_discharge_y");
+				return false;
+			}
+			
+			last_date='31-03-2019';
+			var last_date1=convertdate(last_date);
+			if (exmp_discharge_date1 > last_date1)
+			{
+				document.getElementById("dialog").innerHTML=("Your date of discharge can not be beyond one year from the last date of closing month of CEN");
+				uncheck_radio(x, id_value);  popup_alert("exmp_discharge_y");
+				return false;
+			}
+		}
+		if(x > 25)
+		{
+			if (document.submit_form.discharge_type[0].selected==true)
+			{
+				document.getElementById("dialog").innerHTML=("You must select Type of discharge");
+				uncheck_radio(x, id_value); popup_alert("discharge_type");
+				return false;
+			}
+		}
+		if(x > 26)
+		{
+			if (document.submit_form.civil_emp[0].checked==false && document.submit_form.civil_emp[1].checked==false)
+			{
+				document.getElementById("dialog").innerHTML=("You must select whether you are in Civil employment or not");
+				uncheck_radio(x, id_value); popup_alert("civil_emp");
+				return false;
+			}
+		}
+		if(document.submit_form.civil_emp[0].checked==true)
+		{
+			if(x > 26.001)
+			{
+				if (document.submit_form.civil_emp_working[0].selected==true)
+				{
+					document.getElementById("dialog").innerHTML=("You must select Civil employment in Central/State/PSU/Nationalized Banks/Others");
+					uncheck_radio(x, id_value); popup_alert("civil_emp_working");
+					return false;
+				}
+			}
+		}
+	}
+	if(x > 26.01)
+	{
+		if (document.submit_form.apprenticeship_course[0].checked==false && document.submit_form.apprenticeship_course[1].checked==false)
+		{
+			document.getElementById("dialog").innerHTML=("You Must select whether you have Completed Apprenticeship Course under Apprenticeship Act 1961 in railway establishment or not");
+			uncheck_radio(x, id_value); popup_alert("apprenticeship_course");
+			return false;
+		}
+	}
+	if (document.submit_form.apprenticeship_course[0].checked==true)
+	{
+		/*if(x > 26.02)
+		{
+			if (document.submit_form.apprenticeship_rly[0].selected==true)
+			{
+				document.getElementById("dialog").innerHTML=("You must select Railway Name");
+				uncheck_radio(x, id_value); popup_alert("apprenticeship_rly");
+				return false;
+			}
+		}*/
+		if(x > 26.03)
+		{
+			if(document.submit_form.apprenticeship_from_d[0].selected == true || document.submit_form.apprenticeship_from_m[0].selected == true || document.submit_form.apprenticeship_from_y[0].selected == true)
+			{
+				document.getElementById("dialog").innerHTML = ("Enetr Apprenticeship Course From Date");
+				uncheck_radio(x, id_value); popup_alert("apprenticeship_from_d");
+				return false;
+			}
+			apprenticeship_from_date = document.getElementById("apprenticeship_from_d").value + "-" + document.getElementById("apprenticeship_from_m").value + "-" + document.getElementById("apprenticeship_from_y").value;
+			if (!isDate(apprenticeship_from_date))
+			{
+				return false;
+			}
+			var apprenticeship_from_date1=convertdate(apprenticeship_from_date);
+			
+			if (apprenticeship_from_date1 > ld)
+			{
+				document.getElementById("dialog").innerHTML=("Apprenticeship Course From Date cannot be after CEN closing date");
+				uncheck_radio(x, id_value);  popup_alert("apprenticeship_from_y");
+				return false;
+			}
+		}
+		if(x > 26.04)
+		{
+			if(document.submit_form.apprenticeship_to_d[0].selected == true || document.submit_form.apprenticeship_to_m[0].selected == true || document.submit_form.apprenticeship_to_y[0].selected == true)
+			{
+				document.getElementById("dialog").innerHTML = ("Enetr Apprenticeship Course To Date");
+				uncheck_radio(x, id_value); popup_alert("apprenticeship_to_d");
+				return false;
+			}
+			apprenticeship_to_date = document.getElementById("apprenticeship_to_d").value + "-" + document.getElementById("apprenticeship_to_m").value + "-" + document.getElementById("apprenticeship_to_y").value;
+			if (!isDate(apprenticeship_to_date))
+			{
+				return false;
+			}
+			var apprenticeship_to_date1=convertdate(apprenticeship_to_date);
+			
+			if (apprenticeship_to_date1 < apprenticeship_from_date1)
+			{
+				document.getElementById("dialog").innerHTML=("Apprenticeship Course To Date cannot be before From date");
+				uncheck_radio(x, id_value);  popup_alert("apprenticeship_to_y");
+				return false;
+			}
+			if (apprenticeship_to_date1 > ld)
+			{
+				document.getElementById("dialog").innerHTML=("Apprenticeship Course To Date cannot be after CEN closing date");
+				uncheck_radio(x, id_value);  popup_alert("apprenticeship_to_y");
+				return false;
+			}
+		}
+	}
+	if(x > 28)
+	{
+		if (document.submit_form.govt_emp[0].checked==false && document.submit_form.govt_emp[1].checked==false)
+		{
+			document.getElementById("dialog").innerHTML=("You Must select whether you are an Employee in State / Central Govt / Public Sector Unit or not");
+			uncheck_radio(x, id_value); popup_alert("govt_emp");
+			return false;
+		}
+	}
+	if (document.submit_form.govt_emp[0].checked==true)
+	{
+		if(x > 29)
+		{
+			if (document.submit_form.govt_working[0].selected == true)
+			{
+				document.getElementById("dialog").innerHTML=("You must select Central/State/PSU/Nationalized Banks/Others ");
+				uncheck_radio(x, id_value); popup_alert("govt_working");
+				return false;
+			}
+		}
+	}
+	if(x > 31.01)
+	{
+		if (document.submit_form.jammu_kashmir[0].checked==false && document.submit_form.jammu_kashmir[1].checked==false)
+		{
+			document.getElementById("dialog").innerHTML=("You Must select whether you are a Domiciled in Jammu and Kashmir ");
+			uncheck_radio(x, id_value); popup_alert("jammu_kashmir");
+			return false;
+		}
+	}
+	if(x > 32)
+	{
+		if (document.submit_form.rly_emp[0].checked==false && document.submit_form.rly_emp[1].checked==false)
+		{
+			document.getElementById("dialog").innerHTML=("You Must select whether you are Serving Railway Employee or not");
+			uncheck_radio(x, id_value); popup_alert("rly_emp");
+			return false;
+		}
+	}
+	if (document.submit_form.rly_emp[0].checked==true)
+	{
+		if(x > 33)
+		{
+			if (document.submit_form.rly[0].selected==true)
+			{
+				document.getElementById("dialog").innerHTML=("You must select Railway");
+				uncheck_radio(x, id_value); popup_alert("rly");
+				return false;
+			}
+		}
+	
+		if(x > 38)
+		{
+			if(document.submit_form.rly_joining_d[0].selected == true || document.submit_form.rly_joining_m[0].selected == true || document.submit_form.rly_joining_y[0].selected == true)
+			{
+				document.getElementById("dialog").innerHTML = ("Joining Date must be Entered");
+				uncheck_radio(x, id_value); popup_alert("rly_joining_d");
+				return false;
+			}
+			rly_joining_date = document.getElementById("rly_joining_d").value + "-" + document.getElementById("rly_joining_m").value + "-" + document.getElementById("rly_joining_y").value;
+			if (!isDate(rly_joining_date))
+			{
+				return false;
+			}
+			var rly_joining_date1=convertdate(rly_joining_date);
+			if (rly_joining_date1 > ld)
+			{
+				document.getElementById("dialog").innerHTML=("Joining Date must be perior to closing date of CEN");
+				uncheck_radio(x, id_value);  popup_alert("rly_joining_y");
+				return false;
+			}
+		}
+		if(x > 38.01)
+		{
+			if (document.submit_form.rly_service[0].checked==false && document.submit_form.rly_service[1].checked==false)
+			{
+				document.getElementById("dialog").innerHTML=("You Must select period of service");
+				uncheck_radio(x, id_value); popup_alert("rly_service");
+				return false;
+			}
+		}
+	}
+	if(x > 39)
+	{
+		if (document.submit_form.quasi_admin[0].checked==false && document.submit_form.quasi_admin[1].checked==false)
+		{
+			document.getElementById("dialog").innerHTML=("You Must select Employment Status");
+			uncheck_radio(x, id_value); popup_alert("quasi_admin");
+			return false;
+		}
+	}
+	if (document.submit_form.quasi_admin[0].checked==true)
+	{
+		if(x > 40)
+		{
+			if (document.submit_form.quasi_rly[0].selected==true)
+			{
+				document.getElementById("dialog").innerHTML=("You must select your Railway Name");
+				uncheck_radio(x, id_value); popup_alert("quasi_rly");
+				return false;
+			}
+		}
+		
+		if(x > 43)
+		{
+			if(document.submit_form.quasi_from_d[0].selected == true || document.submit_form.quasi_from_m[0].selected == true || document.submit_form.quasi_from_y[0].selected == true)
+			{
+				document.getElementById("dialog").innerHTML = ("You must select From Date");
+				uncheck_radio(x, id_value); popup_alert("quasi_from_d");
+				return false;
+			}
+			quasi_from_date = document.getElementById("quasi_from_d").value + "-" + document.getElementById("quasi_from_m").value + "-" + document.getElementById("quasi_from_y").value;
+			if (!isDate(quasi_from_date))
+			{
+				return false;
+			}
+			var quasi_from_date1=convertdate(quasi_from_date);
+			if (quasi_from_date1 > ld)
+			{
+				document.getElementById("dialog").innerHTML=("From date must be perior to CEN closing date");
+				uncheck_radio(x, id_value);  popup_alert("quasi_from_y");
+				return false;
+			}
+		}
+		if(x > 44)
+		{
+			if(document.submit_form.quasi_to_d[0].selected == true || document.submit_form.quasi_to_m[0].selected == true || document.submit_form.quasi_to_y[0].selected == true)
+			{
+				document.getElementById("dialog").innerHTML = ("You must select To date");
+				uncheck_radio(x, id_value); popup_alert("quasi_to_d");
+				return false;
+			}
+			quasi_to_date = document.getElementById("quasi_to_d").value + "-" + document.getElementById("quasi_to_m").value + "-" + document.getElementById("quasi_to_y").value;
+			if (!isDate(quasi_to_date))
+			{
+				return false;
+			}
+			var quasi_to_date1=convertdate(quasi_to_date);
+			if (quasi_to_date1 < quasi_from_date1)
+			{
+				document.getElementById("dialog").innerHTML=("From Date must be Less Than To Date");
+				uncheck_radio(x, id_value);  popup_alert("quasi_to_y");
+				return false;
+			}
+			if (quasi_to_date1 > ld)
+			{
+				document.getElementById("dialog").innerHTML=("To Date must perior to CEN closing date");
+				uncheck_radio(x, id_value);  popup_alert("quasi_to_y");
+				return false;
+			}
+		}
+	}
+	if (document.submit_form.gender.value=='Female')
+	{
+		if(x > 45)
+		{
+			if (document.submit_form.widow_divorce[0].checked==false && document.submit_form.widow_divorce[1].checked==false)
+			{
+				document.getElementById("dialog").innerHTML=("You Must select Marital Status");
+				uncheck_radio(x, id_value); popup_alert("widow_divorce");
+				return false;
+			}
+		}
+		if (document.submit_form.widow_divorce[0].checked==true)
+		{
+			if(x > 46)
+			{
+				if (document.submit_form.widow_divorce_type[0].selected==true)
+				{
+					document.getElementById("dialog").innerHTML=("You must select Marital Status from the drop down");
+					uncheck_radio(x, id_value); popup_alert("widow_divorce_type");
+					return false;
+				}
+			}
+		}
+	}
+	if(x > 47)
+	{
+		if(document.getElementById("reservation").value!='SC' && document.getElementById("reservation").value!='ST' && document.submit_form.ex_military[1].checked==true &&  document.submit_form.pwd[1].checked==true &&  document.getElementById("gender").value!='Female'  &&  document.getElementById("gender").value!='Transgender' &&  document.getElementById("religion").value!='Hindu')
+		{
+			if (document.submit_form.minority_can[0].checked==false && document.submit_form.minority_can[1].checked==false)
+			{
+				document.getElementById("dialog").innerHTML=("You Must select whether you Would like to Avail the facility or not");
+				uncheck_radio(x, id_value); popup_alert("minority_can");
+				return false;
+			}
+		}
+	}
+	if (document.submit_form.reservation.value!='OBC-CREAMY LAYER')
+	{
+		if(x > 48)
+		{
+			if (document.submit_form.ebc[0].checked==false && document.submit_form.ebc[1].checked==false)
+			{
+				document.getElementById("dialog").innerHTML=("You Must select Economically Backward Class status ");
+				uncheck_radio(x, id_value); popup_alert("ebc");
+				return false;
+			}
+		}
+		
+		if (document.submit_form.ebc[0].checked==true)
+		{
+			
+			if(document.getElementById("reservation").value!='SC' && document.getElementById("reservation").value!='ST' && document.submit_form.ex_military[1].checked==true &&  document.submit_form.pwd[1].checked==true &&  document.getElementById("gender").value!='Female'  &&  document.getElementById("gender").value!='Transgender' && (document.submit_form.minority_can[1].checked==true || (document.submit_form.minority_can[1].checked==false && document.submit_form.minority_can[0].checked==false) ))
+			{
+				if(x > 49)
+				{
+					if (document.submit_form.refund[0].checked==false && document.submit_form.refund[1].checked==false)
+					{
+						document.getElementById("dialog").innerHTML=("You Must select option to avail refund facility");
+						uncheck_radio(x, id_value); popup_alert("refund");
+						return false;
+					}
+				}
+				if (document.submit_form.refund[0].checked==true)
+				{
+					if(x > 51)
+					{
+						if(document.submit_form.ebc_issue_d[0].selected == true || document.submit_form.ebc_issue_m[0].selected == true || document.submit_form.ebc_issue_y[0].selected == true)
+						{
+							document.getElementById("dialog").innerHTML = ("Certificate issue Date must be Entered");
+							uncheck_radio(x, id_value); popup_alert("ebc_issue_d");
+							return false;
+						}
+						ebc_issue_date = document.getElementById("ebc_issue_d").value + "-" + document.getElementById("ebc_issue_m").value + "-" + document.getElementById("ebc_issue_y").value;
+						if (!isDate(ebc_issue_date))
+						{
+							return false;
+						}
+						var ebc_issue_date1=convertdate(ebc_issue_date);
+						if (ebc_issue_date1 > ld)
+						{
+							document.getElementById("dialog").innerHTML=("Certificate issue Date must be perior to CEN date");
+							uncheck_radio(x, id_value);  popup_alert("ebc_issue_y");
+							return false;
+						}
+					}
+					if(x > 52)
+					{
+						if (document.submit_form.ebc_income.value=='')
+						{
+							document.getElementById("dialog").innerHTML=("You must enter your Income as per certificate");
+							uncheck_radio(x, id_value); popup_alert("ebc_income");
+							return false;
+						}
+					}
+					if(x > 54)
+					{
+						if (document.submit_form.ebc_state[0].selected==true)
+						{
+							document.getElementById("dialog").innerHTML=("You must select state");
+							uncheck_radio(x, id_value); popup_alert("ebc_state");
+							return false;
+						}
+					}
+				}
+			}
+		}
+	}
+	if(x > 56)
+	{
+		var agecheck=true;
+		if (document.getElementById("reservation").value=="UR" || document.getElementById("reservation").value=="OBC-CREAMY LAYER")
+		{
+			agecheck=checkrelax(maxage_ur, dob_date,document.getElementById("reservation").value);
+		}
+		else if (document.getElementById("reservation").value=="SC" || document.getElementById("reservation").value=="ST")
+		{
+			agecheck=checkrelax(maxage_scst, dob_date,document.getElementById("reservation").value);
+		}
+		else if (document.getElementById("reservation").value=="OBC-NON CREAMY LAYER")
+		{
+			agecheck=checkrelax(maxage_obc, dob_date,document.getElementById("reservation").value);
+		}
+		if (agecheck==false)
+		{
+			return false;
+		}
+	}
+	if(x >56.1)
+	{
+		if(document.submit_form.registration_security_code.value=='')
+		{
+			document.getElementById("dialog").innerHTML=("Enter Security Code");
+			uncheck_radio(x, id_value);  
+			popup_alert("registration_security_code");
+			return false;
+		}
+	}
+	
+	if(x > 57)
+	{
+		
+		
+		if(document.getElementById("refund_candidate_status").value==1  && (document.getElementById("application_edit_status").value==1 || document.getElementById("application_update_data_status").value==1))
+		{
+			if(document.getElementById("reservation").value!='SC' && document.getElementById("reservation").value!='ST' && document.submit_form.ex_military[1].checked==true &&  document.submit_form.pwd[1].checked==true &&  document.getElementById("gender").value!='Female'  &&  document.getElementById("gender").value!='Transgender' && (document.submit_form.minority_can[1].checked==true || (document.submit_form.minority_can[0].checked==false && document.submit_form.minority_can[1].checked==false ))  && (document.submit_form.ebc[1].checked==true || (document.submit_form.ebc[0].checked==true && document.submit_form.refund[1].checked==true)) )
+			{
+				document.getElementById("dialog").innerHTML = ("Due to changes made by you, your fee payment category has changed from Rs 250 to Rs 500. Hence you need to pay application fee of Rs 500 again. Please confirm that all the changes are correct. Without Payment you can not proceed further");
+				popup_confirm_submit();
+				return false;
+			}
+			else
+			{
+				if(document.getElementById("modification_count_status").value==1)
+				{
+					document.getElementById("dialog").innerHTML = (" You have completed the modification twice. Further modification is not permited.  ");
+					popup_confirm_submit();
+					return false;
+				}
+				else
+				{
+					document.getElementById("dialog").innerHTML = ("Please Confirm that all the information provided is correct. Once submitted it can not be edited. In case of editing after submission you have to make  modification fee of Rs. 100 .");
+					popup_confirm_submit();
+					return false;
+				}
+			}
+			
+		}
+		else
+		{
+			if(document.getElementById("modification_count_status").value==1)
+			{
+				document.getElementById("dialog").innerHTML = (" You have completed the modification twice. Further modification is not permited.  ");
+				popup_confirm_submit();
+				return false;
+			}
+			else
+			{
+				document.getElementById("dialog").innerHTML = ("Please Confirm that all the information provided is correct. Once submitted it can not be edited. In case of editing after submission you have to make  modification fee of Rs. 100 .");
+				popup_confirm_submit();
+				return false;
+			}
+		}
+	}
+	
+}
+function popup_confirm_submit()
+{
+    $(function () 
+	{
+        $("#dialog").dialog(
+		{
+			width: 500,
+			modal: true,
+			resizable: false,
+			buttons: 
+			{
+				"Confirm": function () 
+				{
+					$(this).dialog("close");
+					document.getElementById("dialog").innerHTML = "";
+					$("#submit").click();
+				},
+				"Edit": function () 
+				{
+					$(this).dialog("close");
+					document.getElementById("dialog").innerHTML = "";
+				}
+			}
+		});
+    });
+}
+function checkvalues_tab0(x, id_value) 
+{
+	
+    var lastdate=document.getElementById("lastdate_submit").value;
+    last_dates=lastdate.split("-");
+    lastdate1=last_dates[1] + "/" + last_dates[0] + "/" + last_dates[2];
+    var ld=new Date(lastdate1);
+	if (document.submit_form.pwd_value.value==1)
+	{
+		
+		if(x > 1)
+		{
+			if (document.submit_form.scribe_facility[0].checked==false && document.submit_form.scribe_facility[1].checked==false)
+			{
+				document.getElementById("dialog").innerHTML=("You Must select requirement for scribe");
+				uncheck_radio(x, id_value); popup_alert("scribe_facility");
+				return false;
+			}
+		}
+		/*if (document.submit_form.scribe_facility[0].checked==true)
+		{
+			
+			if(x >1.1)
+			{
+				if (document.getElementById("scribe_reg_name").value=='')
+				{
+					document.getElementById("dialog").innerHTML=("You must enter scribe name");
+					uncheck_radio(x, id_value);  popup_alert("scribe_reg_name");
+					return false;
+				}
+			}
+			if(x >2)
+			{
+				if (document.getElementById("scribe_reg_aadhar").value=='')
+				{
+					document.getElementById("dialog").innerHTML=("You must enter scribe aadhaar number");
+					uncheck_radio(x, id_value);  popup_alert("scribe_reg_aadhar");
+					return false;
+				}
+			}
+			if(x >3)
+			{
+				if (document.getElementById("scribe_reg_father").value=='')
+				{
+					document.getElementById("dialog").innerHTML=("You must enter scribe father name");
+					uncheck_radio(x, id_value);  popup_alert("scribe_reg_father");
+					return false;
+				}
+			}
+			if(x > 4)
+			{
+				if(document.submit_form.scribe_reg_dob_d[0].selected == true || document.submit_form.scribe_reg_dob_m[0].selected == true || document.submit_form.scribe_reg_dob_y[0].selected == true)
+				{
+					document.getElementById("dialog").innerHTML = ("You must enter scribe date of birth ");
+					uncheck_radio(x, id_value); popup_alert("scribe_reg_dob_d");
+					return false;
+				}
+				scribe_reg_dob = document.getElementById("scribe_reg_dob_d").value + "-" + document.getElementById("scribe_reg_dob_m").value + "-" + document.getElementById("scribe_reg_dob_y").value;
+				if (!isDate(scribe_reg_dob))
+				{
+					return false;
+				}
+				var scribe_reg_dob1=convertdate(scribe_reg_dob);
+				/*if (scribe_reg_dob1 > ld)
+				{
+					document.getElementById("dialog").innerHTML=("regular scribe date of birth must be Less Than or Equal to Notification Date");
+					uncheck_radio(x, id_value);  popup_alert("scribe_reg_dob_y");
+					return false;
+				}
+			}
+			if(x >5)
+			{
+				if (document.getElementById("scribe_reg_qua").value=='')
+				{
+					document.getElementById("dialog").innerHTML=("You must enter scribe qualification");
+					uncheck_radio(x, id_value);  popup_alert("scribe_reg_qua");
+					return false;
+				}
+			}
+		}*/
+	}
+	
+	if(x >13)
+	{
+		if (document.submit_form.sslc_state[0].selected==true)
+		{
+			document.getElementById("dialog").innerHTML=("You must select state in which you studied SSLC/Metriculation");
+			uncheck_radio(x, id_value);  popup_alert("sslc_state");
+			return false;
+		}
+	}
+	if(x >13.01)
+	{
+		if (document.submit_form.sslc_district[0].selected==true)
+		{
+			document.getElementById("dialog").innerHTML=("You must select  District in which you studied SSLC/Matriculation");
+			uncheck_radio(x, id_value);  popup_alert("sslc_district");
+			return false;
+		}
+	}
+	if(x >13.1)
+	{
+		if (document.submit_form.sslc_cgpa[0].selected==true)
+		{
+			document.getElementById("dialog").innerHTML=("You must select type of marks");
+			uncheck_radio(x, id_value);  popup_alert("sslc_cgpa");
+			return false;
+		}
+	}
+	if (document.getElementById("sslc_cgpa").value=='CGPA')
+	{
+		if(x >13.2)
+		{
+			if (document.getElementById("sslc_cgpa_percentage").value=='' || document.getElementById("sslc_cgpa_percentage").value==0)
+			{
+				document.getElementById("dialog").innerHTML=("You must enter SSLC/Matriculation CGPA");
+				uncheck_radio(x, id_value);  popup_alert("sslc_cgpa_percentage");
+				return false;
+			}
+			if (document.getElementById("sslc_cgpa_percentage").value>10)
+			{
+				document.getElementById("dialog").innerHTML=("SSLC/Metriculation CGPA must be less than 10 Points");
+				uncheck_radio(x, id_value);  popup_alert("sslc_cgpa_percentage");
+				return false;
+			}
+		}
+	}
+	else if (document.getElementById("sslc_cgpa").value=='Percentage')
+	{
+		if(x >14)
+		{
+			if (document.getElementById("sslc_percentage").value=='' || document.getElementById("sslc_percentage").value==0)
+			{
+				document.getElementById("dialog").innerHTML=("You must enter SSLC/Matriculation Percentage");
+				uncheck_radio(x, id_value);  popup_alert("sslc_percentage");
+				return false;
+			}
+			if (document.getElementById("sslc_percentage").value>100)
+			{
+				document.getElementById("dialog").innerHTML=("Your SSLC/Matriculation Percentage must not  be more than 100%");
+				uncheck_radio(x, id_value);  popup_alert("sslc_percentage");
+				return false;
+			}
+		}
+	}
+	if (document.getElementById("ten_qua").value!='' && document.getElementById("ten_dis").value!='')
+	{
+		if(x >14.01)
+		{
+			if (document.getElementById("tenth_institute").value=='')
+			{
+				document.getElementById("dialog").innerHTML=("You must enter 10+2 institute name");
+				uncheck_radio(x, id_value);  popup_alert("tenth_institute");
+				return false;
+			}
+		}
+		if(x >14.02)
+		{
+			if (document.getElementById("tenth_passing_year").value=='')
+			{
+				document.getElementById("dialog").innerHTML=("You must select 10+2 passing year");
+				uncheck_radio(x, id_value);  popup_alert("tenth_passing_year");
+				return false;
+			}
+		}
+		if(document.getElementById("tenth_passing_year").value>2017)
+		{
+			if(x > 14.03)
+			{
+				if(document.submit_form.tenth_passing_date_d[0].selected == true || document.submit_form.tenth_passing_date_m[0].selected == true || document.submit_form.tenth_passing_date_y[0].selected == true)
+				{
+					document.getElementById("dialog").innerHTML = ("10+2 Certificate Issue Date must be Entered");
+					uncheck_radio(x, id_value); popup_alert("tenth_passing_date_d");
+					return false;
+				}
+				tenth_passing_date = document.getElementById("tenth_passing_date_d").value + "-" + document.getElementById("tenth_passing_date_m").value + "-" + document.getElementById("tenth_passing_date_y").value;
+				if (!isDate(tenth_passing_date))
+				{
+					return false;
+				}
+				var tenth_passing_date1=convertdate(tenth_passing_date);
+				if (tenth_passing_date1 > ld)
+				{
+					document.getElementById("dialog").innerHTML=("10+2 Certificate Issue Date cannot be beyond CEN closing date");
+					uncheck_radio(x, id_value);  popup_alert("tenth_passing_date_y");
+					return false;
+				}
+			}
+		}
+		if(x >14.04)
+		{
+			if (document.submit_form.tenth_state[0].selected==true)
+			{
+				document.getElementById("dialog").innerHTML=("You must select state in which you studied 10+2");
+				uncheck_radio(x, id_value);  popup_alert("tenth_state");
+				return false;
+			}
+		}
+		if(x >14.05)
+		{
+			if (document.submit_form.tenth_district[0].selected==true)
+			{
+				document.getElementById("dialog").innerHTML=("You must select district in which you studied 10+2");
+				uncheck_radio(x, id_value);  popup_alert("tenth_district");
+				return false;
+			}
+		}
+		if(x >14.06)
+		{
+			if (document.submit_form.tenth_cgpa[0].selected==true)
+			{
+				document.getElementById("dialog").innerHTML=("You must select type of marks");
+				uncheck_radio(x, id_value);  popup_alert("tenth_cgpa");
+				return false;
+			}
+		}
+		if (document.getElementById("tenth_cgpa").value=='CGPA')
+		{
+			if(x >14.07)
+			{
+				if (document.getElementById("tenth_cgpa_percentage").value=='' || document.getElementById("tenth_cgpa_percentage").value==0)
+				{
+					document.getElementById("dialog").innerHTML=("You must enter 10+2 Qualification CGPA");
+					uncheck_radio(x, id_value);  popup_alert("tenth_cgpa_percentage");
+					return false;
+				}
+				if (document.getElementById("tenth_cgpa_percentage").value>10)
+				{
+					document.getElementById("dialog").innerHTML=("Your 10+2 Qualification CGPA must not be more than 10 Points");
+					uncheck_radio(x, id_value);  popup_alert("tenth_cgpa_percentage");
+					return false;
+				}
+			}
+		}
+		else if (document.getElementById("tenth_cgpa").value=='Percentage')
+		{
+			if(x >14.08)
+			{
+				if (document.getElementById("tenth_percentage").value=='' || document.getElementById("tenth_percentage").value==0)
+				{
+					document.getElementById("dialog").innerHTML=("You must enter 10+2 Qualification Percentage");
+					uncheck_radio(x, id_value);  popup_alert("tenth_percentage");
+					return false;
+				}
+				if (document.getElementById("tenth_percentage").value>100)
+				{
+					document.getElementById("dialog").innerHTML=("Your 10+2 Qualification  Percentage must not  be more than 100%");
+					uncheck_radio(x, id_value);  popup_alert("tenth_percentage");
+					return false;
+				}
+			}
+		}
+	}
+	if (document.getElementById("iti_qua").value!='' && document.getElementById("iti_tra").value!='')
+	{
+		if(x >16)
+		{
+			if (document.getElementById("iti_institute").value=='')
+			{
+				document.getElementById("dialog").innerHTML=("You must enter ITI institute name");
+				uncheck_radio(x, id_value);  popup_alert("iti_institute");
+				return false;
+			}
+		}
+		if(x >16.01)
+		{
+			if (document.getElementById("iti_passing_year").value=='')
+			{
+				document.getElementById("dialog").innerHTML=("You must select ITI passing year");
+				uncheck_radio(x, id_value);  popup_alert("iti_passing_year");
+				return false;
+			}
+		}
+		if(document.getElementById("iti_passing_year").value>2017)
+		{
+			if(x > 16.1)
+			{
+				if(document.submit_form.iti_passing_date_d[0].selected == true || document.submit_form.iti_passing_date_m[0].selected == true || document.submit_form.iti_passing_date_y[0].selected == true)
+				{
+					document.getElementById("dialog").innerHTML = ("ITI Certificate Issue Date must be Entered");
+					uncheck_radio(x, id_value); popup_alert("iti_passing_date_d");
+					return false;
+				}
+				iti_passing_date = document.getElementById("iti_passing_date_d").value + "-" + document.getElementById("iti_passing_date_m").value + "-" + document.getElementById("iti_passing_date_y").value;
+				if (!isDate(iti_passing_date))
+				{
+					return false;
+				}
+				var iti_passing_date1=convertdate(iti_passing_date);
+				if (iti_passing_date1 > ld)
+				{
+					document.getElementById("dialog").innerHTML=("ITI Certificate Issue Date cannot be beyond CEN closing date");
+					uncheck_radio(x, id_value);  popup_alert("iti_passing_date_y");
+					return false;
+				}
+			}
+		}
+		if(x >16.2)
+		{
+			if (document.submit_form.iti_state[0].selected==true)
+			{
+				document.getElementById("dialog").innerHTML=("You must select state in which you studied ITI");
+				uncheck_radio(x, id_value);  popup_alert("iti_state");
+				return false;
+			}
+		}
+		if(x >16.3)
+		{
+			if (document.submit_form.iti_district[0].selected==true)
+			{
+				document.getElementById("dialog").innerHTML=("You must select district in which you studied ITI");
+				uncheck_radio(x, id_value);  popup_alert("iti_district");
+				return false;
+			}
+		}
+		if(x >16.4)
+		{
+			if (document.submit_form.iti_cer_issue[0].selected==true)
+			{
+				document.getElementById("dialog").innerHTML=("You must select ITI Certificate issuing authority");
+				uncheck_radio(x, id_value);  popup_alert("iti_cer_issue");
+				return false;
+			}
+		}
+		if(x >16.5)
+		{
+			if (document.submit_form.iti_cer_type[0].selected==true)
+			{
+				document.getElementById("dialog").innerHTML=("You must select ITI Certificate Type");
+				uncheck_radio(x, id_value);  popup_alert("iti_cer_type");
+				return false;
+			}
+		}
+		if(x >16.51)
+		{
+			if (document.submit_form.iti_cgpa[0].selected==true)
+			{
+				document.getElementById("dialog").innerHTML=("You must select type of marks");
+				uncheck_radio(x, id_value);  popup_alert("iti_cgpa");
+				return false;
+			}
+		}
+		if (document.getElementById("iti_cgpa").value=='CGPA')
+		{
+			if(x >16.52)
+			{
+				if (document.getElementById("iti_cgpa_percentage").value=='' || document.getElementById("iti_cgpa_percentage").value==0)
+				{
+					document.getElementById("dialog").innerHTML=("You must enter ITI Qualification CGPA");
+					uncheck_radio(x, id_value);  popup_alert("iti_cgpa_percentage");
+					return false;
+				}
+				if (document.getElementById("iti_cgpa_percentage").value>10)
+				{
+					document.getElementById("dialog").innerHTML=("Your ITI Qualification CGPA must not be more than 10 Points");
+					uncheck_radio(x, id_value);  popup_alert("iti_cgpa_percentage");
+					return false;
+				}
+			}
+		}
+		else if (document.getElementById("iti_cgpa").value=='Percentage')
+		{
+			if(x >16.6)
+			{
+				if (document.getElementById("iti_percentage").value=='' || document.getElementById("iti_percentage").value==0)
+				{
+					document.getElementById("dialog").innerHTML=("You must enter ITI Qualification Percentage");
+					uncheck_radio(x, id_value);  popup_alert("iti_percentage");
+					return false;
+				}
+				if (document.getElementById("iti_percentage").value>100)
+				{
+					document.getElementById("dialog").innerHTML=("Your ITI Qualification  Percentage must not  be more than 100%");
+					uncheck_radio(x, id_value);  popup_alert("iti_percentage");
+					return false;
+				}
+			}
+		}
+	}
+	if (document.getElementById("dip_qua").value!='' && document.getElementById("dip_dis").value!='')
+	{
+		if(x >17)
+		{
+			if (document.getElementById("diploma_institute").value=='')
+			{
+				document.getElementById("dialog").innerHTML=("You must enter Diploma institute name");
+				uncheck_radio(x, id_value);  popup_alert("diploma_institute");
+				return false;
+			}
+		}
+		if(x >17.01)
+		{
+			if (document.getElementById("diploma_passing_year").value=='')
+			{
+				document.getElementById("dialog").innerHTML=("You must select Diploma passing year");
+				uncheck_radio(x, id_value);  popup_alert("diploma_passing_year");
+				return false;
+			}
+		}
+		if (document.getElementById("diploma_passing_year").value>2017)
+		{
+			if(x > 17.1)
+			{
+				if(document.submit_form.diploma_passing_date_d[0].selected == true || document.submit_form.diploma_passing_date_m[0].selected == true || document.submit_form.diploma_passing_date_y[0].selected == true)
+				{
+					document.getElementById("dialog").innerHTML = ("Diploma Certificate Issue Date must be Entered");
+					uncheck_radio(x, id_value); popup_alert("diploma_passing_date_d");
+					return false;
+				}
+				diploma_passing_date = document.getElementById("diploma_passing_date_d").value + "-" + document.getElementById("diploma_passing_date_m").value + "-" + document.getElementById("diploma_passing_date_y").value;
+				if (!isDate(diploma_passing_date))
+				{
+					return false;
+				}
+				var diploma_passing_date1=convertdate(diploma_passing_date);
+				if (diploma_passing_date1 > ld)
+				{
+					document.getElementById("dialog").innerHTML=("Diploma Certificate Issue Date must be Less Than or Equal to Notification Date");
+					uncheck_radio(x, id_value);  popup_alert("diploma_passing_date_y");
+					return false;
+				}
+			}
+		}
+		if(x >17.2)
+		{
+			if (document.submit_form.diploma_state[0].selected==true)
+			{
+				document.getElementById("dialog").innerHTML=("You must select state name in which you studied Diploma");
+				uncheck_radio(x, id_value);  popup_alert("diploma_state");
+				return false;
+			}
+		}
+		if(x >17.3)
+		{
+			if (document.submit_form.diploma_district[0].selected==true)
+			{
+				document.getElementById("dialog").innerHTML=("You must select district name in which you studied Diploma");
+				uncheck_radio(x, id_value);  popup_alert("diploma_district");
+				return false;
+			}
+		}
+		if(x >17.31)
+		{
+			if (document.submit_form.diploma_cgpa[0].selected==true)
+			{
+				document.getElementById("dialog").innerHTML=("You must select type of marks");
+				uncheck_radio(x, id_value);  popup_alert("diploma_cgpa");
+				return false;
+			}
+		}
+		if (document.getElementById("diploma_cgpa").value=='CGPA')
+		{
+			if(x >17.32)
+			{
+				if (document.getElementById("diploma_cgpa_percentage").value=='' || document.getElementById("diploma_cgpa_percentage").value==0)
+				{
+					document.getElementById("dialog").innerHTML=("You must enter Diploma Qualification CGPA");
+					uncheck_radio(x, id_value);  popup_alert("diploma_cgpa_percentage");
+					return false;
+				}
+				if (document.getElementById("diploma_cgpa_percentage").value>10)
+				{
+					document.getElementById("dialog").innerHTML=("Your Diploma Qualification CGPA must not be more than 10 Points");
+					uncheck_radio(x, id_value);  popup_alert("diploma_cgpa_percentage");
+					return false;
+				}
+			}
+		}
+		else if (document.getElementById("diploma_cgpa").value=='Percentage')
+		{
+			if(x >17.4)
+			{
+				if (document.getElementById("diploma_percentage").value=='' || document.getElementById("diploma_percentage").value==0)
+				{
+					document.getElementById("dialog").innerHTML=("You must enter Diploma Qualification Percentage");
+					uncheck_radio(x, id_value);  popup_alert("iti_percentage");
+					return false;
+				}
+				if (document.getElementById("diploma_percentage").value>100)
+				{
+					document.getElementById("dialog").innerHTML=("You Diploma Qualification Percentage must be less than 100%");
+					uncheck_radio(x, id_value);  popup_alert("diploma_percentage");
+					return false;
+				}
+			}
+		}
+	}
+	if (document.getElementById("deg_qua").value!='' && document.getElementById("deg_dis").value!='')
+	{
+		if(x >18)
+		{
+			if (document.getElementById("degree_institute").value=='')
+			{
+				document.getElementById("dialog").innerHTML=("You must enter Degree institute name");
+				uncheck_radio(x, id_value);  popup_alert("degree_institute");
+				return false;
+			}
+		}
+		if(x >18.01)
+		{
+			if (document.getElementById("degree_passing_year").value=='')
+			{
+				document.getElementById("dialog").innerHTML=("You must select Degree passing year");
+				uncheck_radio(x, id_value);  popup_alert("degree_passing_year");
+				return false;
+			}
+		}
+		if (document.getElementById("degree_passing_year").value>2017)
+		{
+			if(x > 18.1)
+			{
+				if(document.submit_form.degree_passing_date_d[0].selected == true || document.submit_form.degree_passing_date_m[0].selected == true || document.submit_form.degree_passing_date_y[0].selected == true)
+				{
+					document.getElementById("dialog").innerHTML = ("Degree Certificate Issue Date must be Entered");
+					uncheck_radio(x, id_value); popup_alert("degree_passing_date_d");
+					return false;
+				}
+				degree_passing_date = document.getElementById("degree_passing_date_d").value + "-" + document.getElementById("degree_passing_date_m").value + "-" + document.getElementById("degree_passing_date_y").value;
+				if (!isDate(degree_passing_date))
+				{
+					return false;
+				}
+				var degree_passing_date1=convertdate(degree_passing_date);
+				if (degree_passing_date1 > ld)
+				{
+					document.getElementById("dialog").innerHTML=("Degree Certificate Issue Date must be Less Than or Equal to Notification Date");
+					uncheck_radio(x, id_value);  popup_alert("degree_passing_date_y");
+					return false;
+				}
+			}
+		}
+		if(x >18.2)
+		{
+			if (document.submit_form.degree_state[0].selected==true)
+			{
+				document.getElementById("dialog").innerHTML=("You must select state name in which you studied Degree");
+				uncheck_radio(x, id_value);  popup_alert("degree_state");
+				return false;
+			}
+		}
+		if(x >18.3)
+		{
+			if (document.submit_form.degree_district[0].selected==true)
+			{
+				document.getElementById("dialog").innerHTML=("You must select district name in which you studied Degree");
+				uncheck_radio(x, id_value);  popup_alert("degree_district");
+				return false;
+			}
+		}
+		if(x >18.31)
+		{
+			if (document.submit_form.degree_cgpa[0].selected==true)
+			{
+				document.getElementById("dialog").innerHTML=("You must select type of marks");
+				uncheck_radio(x, id_value);  popup_alert("degree_cgpa");
+				return false;
+			}
+		}
+		if (document.getElementById("degree_cgpa").value=='CGPA')
+		{
+			if(x >18.32)
+			{
+				if (document.getElementById("degree_cgpa_percentage").value=='' || document.getElementById("degree_cgpa_percentage").value==0)
+				{
+					document.getElementById("dialog").innerHTML=("You must enter Degree Qualification CGPA");
+					uncheck_radio(x, id_value);  popup_alert("degree_cgpa_percentage");
+					return false;
+				}
+				if (document.getElementById("degree_cgpa_percentage").value>10)
+				{
+					document.getElementById("dialog").innerHTML=("Your Degree Qualification CGPA must not be more than 10 Points");
+					uncheck_radio(x, id_value);  popup_alert("degree_cgpa_percentage");
+					return false;
+				}
+			}
+		}
+		else if (document.getElementById("degree_cgpa").value=='Percentage')
+		{
+			if(x >18.4)
+			{
+				if (document.getElementById("degree_percentage").value=='' || document.getElementById("degree_percentage").value==0)
+				{
+					document.getElementById("dialog").innerHTML=("You must enter Degree Qualification Percentage");
+					uncheck_radio(x, id_value);  popup_alert("degree_percentage");
+					return false;
+				}
+				if (document.getElementById("degree_percentage").value>100)
+				{
+					document.getElementById("dialog").innerHTML=("Your Degree Qualification  Percentage must not  be more than 100%");
+					uncheck_radio(x, id_value);  popup_alert("degree_percentage");
+					return false;
+				}
+			}
+		}
+	}
+	/*if(x >19.1)
+	{
+		if (document.submit_form.higher_qua_type[0].selected==true)
+		{
+			document.getElementById("dialog").innerHTML=("You must select your higher qualification type");
+			uncheck_radio(x, id_value);  popup_alert("higher_qua_type");
+			return false;
+		}
+	}*/
+	if(x >19.2)
+	{
+		if (document.submit_form.higher_qua_type.value=='Others')
+		{
+			if (document.submit_form.higher_qua_type_others.value=='')
+			{
+				document.getElementById("dialog").innerHTML=("You must enter your other higher qualification type");
+				uncheck_radio(x, id_value);  popup_alert("higher_qua_type_others");
+				return false;
+			}
+		}
+	}
+	/*if(x >19.3)
+	{
+		if (document.submit_form.higher_qua[0].selected==true)
+		{
+			document.getElementById("dialog").innerHTML=("You must select your higher qualification");
+			uncheck_radio(x, id_value);  popup_alert("higher_qua");
+			return false;
+		}
+	}*/
+	if(x >19.4)
+	{
+		if (document.submit_form.higher_qua.value=='Others')
+		{
+			if (document.submit_form.higher_qua_others.value=='')
+			{
+				document.getElementById("dialog").innerHTML=("You must enter your higher qualification other stream");
+				uncheck_radio(x, id_value);  popup_alert("higher_qua_others");
+				return false;
+			}
+		}
+	}	
+	if(x >24)
+	{
+		if (document.submit_form.mother_tongue[0].selected==true)
+		{
+			document.getElementById("dialog").innerHTML=("You must select your mother tongue");
+			uncheck_radio(x, id_value);  popup_alert("mother_tongue");
+			return false;
+		}
+	}
+	if(x >24.1)
+	{
+		if (document.submit_form.exam_language[0].selected==true)
+		{
+			document.getElementById("dialog").innerHTML=("You must select your Choice of Exam Language");
+			uncheck_radio(x, id_value);  popup_alert("exam_language");
+			return false;
+		}
+	}
+	
+	if(document.getElementById("reservation_val").value=='SC' || document.getElementById("reservation_val").value=='ST' )
+	{
+		if(x > 25)
+		{
+			if (document.submit_form.free_travel[0].checked==false && document.submit_form.free_travel[1].checked==false)
+			{
+				document.getElementById("dialog").innerHTML=("You Must select whether you Would like to avail the free travel authority (Second Class Railway Pass) or not");
+				uncheck_radio(x, id_value); popup_alert("free_travel");
+				return false;
+			}
+		}
+		if(document.submit_form.free_travel[0].checked==true)
+		{
+			if(x >26)
+			{
+				if (document.submit_form.rly_pass_certi_no.value=='')
+				{
+					document.getElementById("dialog").innerHTML=("You must enter Certificate no");
+					uncheck_radio(x, id_value);  popup_alert("rly_pass_certi_no");
+					return false;
+				}
+			}
+			if(x > 27)
+			{
+				if(document.submit_form.rly_pass_date_d[0].selected == true || document.submit_form.rly_pass_date_m[0].selected == true || document.submit_form.rly_pass_date_y[0].selected == true)
+				{
+					document.getElementById("dialog").innerHTML = ("You must enter Certificate Issue Date ");
+					uncheck_radio(x, id_value); popup_alert("rly_pass_date_d");
+					return false;
+				}
+				rly_pass_date = document.getElementById("rly_pass_date_d").value + "-" + document.getElementById("rly_pass_date_m").value + "-" + document.getElementById("rly_pass_date_y").value;
+				if (!isDate(rly_pass_date))
+				{
+					return false;
+				}
+			}
+			if(x >28)
+			{
+				if (document.submit_form.rly_pass_issue.value=='')
+				{
+					document.getElementById("dialog").innerHTML=("You must enter Certificate issued by");
+					uncheck_radio(x, id_value);  popup_alert("rly_pass_issue");
+					return false;
+				}
+			}
+			if(x >29)
+			{
+				if (document.submit_form.rly_pass_place.value=='')
+				{
+					document.getElementById("dialog").innerHTML=("You must enter Certificate issued place");
+					uncheck_radio(x, id_value);  popup_alert("rly_pass_place");
+					return false;
+				}
+			}
+			if(x >30)
+			{
+				if (document.submit_form.rly_pass_state[0].selected==true)
+				{
+					document.getElementById("dialog").innerHTML=("You must select State");
+					uncheck_radio(x, id_value);  popup_alert("rly_pass_state");
+					return false;
+				}
+			}
+			if(x >30.01)
+			{
+				if (document.submit_form.rly_pass_district[0].selected==true)
+				{
+					document.getElementById("dialog").innerHTML=("You must select District");
+					uncheck_radio(x, id_value);  popup_alert("rly_pass_district");
+					return false;
+				}
+			}
+			if(x >30.02)
+			{
+				if (document.submit_form.pre_rly_station.value=='')
+				{
+					document.getElementById("dialog").innerHTML=("You must enter Nearest Railway station name");
+					uncheck_radio(x, id_value);  popup_alert("pre_rly_station");
+					return false;
+				}
+			}
+		}
+	}
+	if(x >31)
+	{
+		if (document.submit_form.pre_address1.value=='')
+		{
+			document.getElementById("dialog").innerHTML=("You must enter Present Address1");
+			uncheck_radio(x, id_value);  popup_alert("pre_address1");
+			return false;
+		}
+	}
+	if(x >32)
+	{
+		if (document.submit_form.pre_address2.value=='')
+		{
+			document.getElementById("dialog").innerHTML=("You must enter Present Address2");
+			uncheck_radio(x, id_value);  popup_alert("pre_address2");
+			return false;
+		}
+	}
+	/*if(x >33)
+	{
+		if (document.submit_form.pre_address3.value=='')
+		{
+			document.getElementById("dialog").innerHTML=("You must enter Present Address3");
+			uncheck_radio(x, id_value);  popup_alert("pre_address3");
+			return false;
+		}
+	}*/
+	if(x >35)
+	{
+		if (document.submit_form.pre_state_name[0].selected==true)
+		{
+			document.getElementById("dialog").innerHTML=("You must select Present Address State");
+			uncheck_radio(x, id_value);  popup_alert("pre_state_name");
+			return false;
+		}
+	}
+	if(x >36)
+	{
+		if (document.submit_form.pre_district[0].selected==true)
+		{
+			document.getElementById("dialog").innerHTML=("You must select Present Address district");
+			uncheck_radio(x, id_value);  popup_alert("pre_district");
+			return false;
+		}
+	}
+	if(x >37)
+	{
+		if (document.submit_form.pre_city[0].selected==true)
+		{
+			document.getElementById("dialog").innerHTML=("You must select Present Address city");
+			uncheck_radio(x, id_value);  popup_alert("pre_city");
+			return false;
+		}
+	}
+	if(x >39)
+	{
+		if (document.submit_form.pre_pincode.value=='')
+		{
+			document.getElementById("dialog").innerHTML=("You must enter Present Address pincode");
+			uncheck_radio(x, id_value);  popup_alert("pre_pincode");
+			return false;
+		}
+		else if (isNaN(document.submit_form.pre_pincode.value))
+		{
+			document.getElementById("dialog").innerHTML = ("Present Address pincode must contain only numbers");
+			popup_alert("pre_pincode");
+			return false;
+		}
+		else if (document.submit_form.pre_pincode.value.length != 6)
+		{
+			document.getElementById("dialog").innerHTML = ("Present Address pincode must contain 6 numbers");
+			popup_alert("pre_pincode");
+			return false;
+		}
+	}
+	
+	if(x >51)
+	{
+		if (document.submit_form.beneficiary_name.value=='')
+		{
+			document.getElementById("dialog").innerHTML=("You must enter Name of the account holder");
+			uncheck_radio(x, id_value);  popup_alert("beneficiary_name");
+			return false;
+		}
+	}
+	if(x >52)
+	{
+		if (document.submit_form.account_number.value=='')
+		{
+			document.getElementById("dialog").innerHTML=("You must enter account number");
+			uncheck_radio(x, id_value);  popup_alert("account_number");
+			return false;
+		}
+		else if (isNaN(document.submit_form.account_number.value))
+		{
+			document.getElementById("dialog").innerHTML = ("Account number must contain only numbers");
+			popup_alert("account_number");
+			return false;
+		}
+	}
+	if(x >52.1)
+	{
+		if (document.submit_form.re_account_number.value=='')
+		{
+			document.getElementById("dialog").innerHTML=("You must re-enter account number");
+			uncheck_radio(x, id_value);  popup_alert("re_account_number");
+			return false;
+		}
+		else if (isNaN(document.submit_form.re_account_number.value))
+		{
+			document.getElementById("dialog").innerHTML = ("Re-enter Account number must contain only numbers");
+			popup_alert("re_account_number");
+			return false;
+		}
+		if (document.submit_form.re_account_number.value!=document.submit_form.account_number.value)
+		{
+			document.getElementById("dialog").innerHTML=("Re-entered Account Number And Account Number is not matching");
+			uncheck_radio(x, id_value);  popup_alert("re_account_number");
+			return false;
+		}
+	}
+	if(x >53)
+	{
+		if (document.submit_form.ifsc_code.value=='')
+		{
+			document.getElementById("dialog").innerHTML=("You must enter IFSC Code");
+			uncheck_radio(x, id_value);  popup_alert("ifsc_code");
+			return false;
+		}
+	}
+	if(x >53.1)
+	{
+		if (document.submit_form.re_ifsc_code.value=='')
+		{
+			document.getElementById("dialog").innerHTML=("You must Re-enter IFSC Code");
+			uncheck_radio(x, id_value);  popup_alert("re_ifsc_code");
+			return false;
+		}
+		if (document.submit_form.re_ifsc_code.value!=document.submit_form.ifsc_code.value)
+		{
+			document.getElementById("dialog").innerHTML=("Re-enter IFSC Code and IFSC Code is not matching");
+			uncheck_radio(x, id_value);  popup_alert("re_ifsc_code");
+			return false;
+		}
+	}
+	
+	if(x > 54)
+	{
+		if (document.submit_form.share_score[0].checked==false && document.submit_form.share_score[1].checked==false)
+		{
+			document.getElementById("dialog").innerHTML=("You Must select whether you agree to share your scores in this exam by RRBs with other Ministries/Departments/PSUs and Private organizations, for recruitment in their organizations or not");
+			uncheck_radio(x, id_value); popup_alert("share_score");
+			return false;
+		}
+	}
+	if(x >54.1)
+	{
+		if(document.submit_form.registration_security_code.value=='')
+		{
+			document.getElementById("dialog").innerHTML=("Enter Security Code");
+			uncheck_radio(x, id_value);  
+			popup_alert("registration_security_code");
+			return false;
+		}
+	}
+}
+function checkrelax(maxagecat, dob_date, res_val)
+{
+    var relaxation=0;
+    var assign=0;
+	var unlimited=0;
+	
+	if (document.submit_form.pwd[0].checked==true)
+	{
+		assign=10;
+		if (assign > relaxation)
+		{
+			relaxation=assign;
+		}
+	}
+	
+	if (document.submit_form.ex_military[0].checked==true)
+	{
+		var exmp_joining=document.getElementById("exmp_joining_d").value+"-"+document.getElementById("exmp_joining_m").value+"-"+document.getElementById("exmp_joining_y").value;
+		var exmp_discharge=document.getElementById("exmp_discharge_d").value+"-"+document.getElementById("exmp_discharge_m").value+"-"+document.getElementById("exmp_discharge_y").value;
+		
+		var out=checkAge(exmp_joining,exmp_discharge);
+		var las=out.split('-');
+		if(parseInt(las[0])>=1 || parseInt(las[1])>=6)
+		{
+			assign=3 +  parseInt(las[0]);
+			if (assign > relaxation)
+			{
+				relaxation=assign;
+			}
+		}
+	}
+	if (document.submit_form.apprenticeship_course[0].checked==true)
+	{
+		var apprenticeship_from=document.getElementById("apprenticeship_from_d").value+"-"+document.getElementById("apprenticeship_from_m").value+"-"+document.getElementById("apprenticeship_from_y").value;
+		var apprenticeship_to=document.getElementById("apprenticeship_to_d").value+"-"+document.getElementById("apprenticeship_to_m").value+"-"+document.getElementById("apprenticeship_to_y").value;
+		
+		var out=checkAge(apprenticeship_from,apprenticeship_to);
+		var las=out.split('-');
+		/*var dob_can=document.getElementById("dob_age").value;
+		var dob_can=dob_can.split('-');
+		var dob_can1=dob_can[2]+'-'+dob_can[1]+'-'+dob_can[0];*/
+		
+		if(document.getElementById("application_edit_status").value==1)
+		{
+			var dob_can1= document.getElementById("dob_d").value+'-'+document.getElementById("dob_m").value+'-'+document.getElementById("dob_y").value;
+		}
+		else
+		{
+			var dob_can=document.getElementById("dob_age").value;
+			var dob_can=dob_can.split('-');
+			var dob_can1=dob_can[2]+'-'+dob_can[1]+'-'+dob_can[0];
+		}
+		
+		
+		var out=checkAge(dob_can1,apprenticeship_from);
+		var las=out.split('-');
+	
+		if(las[0]<=25)
+		{
+			assign= 5;
+			if (assign > relaxation)
+			{
+				relaxation=assign;
+			}
+		}
+		else
+		{
+			var out=checkAge(apprenticeship_from,apprenticeship_to);
+			var las=out.split('-');
+			
+			assign= parseInt(las[0]);
+			if (assign > relaxation)
+			{
+				relaxation=assign;
+			}
+		}
+	}
+	
+	if (document.submit_form.jammu_kashmir[0].checked==true)
+	{
+		assign=5;
+		if (assign > relaxation)
+		{
+			relaxation=assign;
+		}
+	}
+	if (document.submit_form.rly_emp[0].checked==true && document.submit_form.rly_service[0].checked==true)
+	{
+		
+		assign=10;
+		if (assign > relaxation)
+		{
+			relaxation=assign;
+		}
+	}
+	if (document.submit_form.quasi_admin[0].checked==true)
+	{
+		var quasi_from=document.getElementById("quasi_from_d").value+"-"+document.getElementById("quasi_from_m").value+"-"+document.getElementById("quasi_from_y").value;
+		var quasi_to=document.getElementById("quasi_to_d").value+"-"+document.getElementById("quasi_to_m").value+"-"+document.getElementById("quasi_to_y").value;
+		
+		var out=checkAge(quasi_from,quasi_to);
+		var las=out.split('-');
+		
+		if(parseInt(las[0])>5)
+		{
+			assign=5;
+		}
+		else
+		{
+			assign=parseInt(las[0])
+		}
+		
+		if (assign > relaxation)
+		{
+			relaxation=assign;
+		}
+	}
+	if (document.submit_form.widow_divorce[0].checked==true)
+	{
+		assign=5;
+		if (assign > relaxation)
+		{
+			relaxation=assign;
+		}
+	}
+	
+	
+   	if (relaxation > 0)
+    {
+        maxagecat.setFullYear(maxagecat.getFullYear() - relaxation);
+    }
+	if(unlimited==0)
+	{
+		if (dob_date < maxagecat)
+		{
+			document.getElementById("dialog").innerHTML=("You are not eligible for this post, you are over aged");
+			popup_alert("reservation");
+			return false;
+		}
+	}
+}
+function uncheck_radio(val, id_value)
+{        
+	if(document.getElementById(id_value).type=="radio")
+	{
+		if(id_value=="pwd")
+		{
+			document.submit_form.pwd[0].checked=false;
+			document.submit_form.pwd[1].checked=false;
+			controlphysic_display('No');
+		}
+		else if(id_value=="ex_military")
+		{
+			document.submit_form.ex_military[0].checked=false;
+			document.submit_form.ex_military[1].checked=false;
+			controlexmp_display('No');
+		}
+		else if(id_value=="apprenticeship_course")
+		{
+			document.submit_form.apprenticeship_course[0].checked=false;
+			document.submit_form.apprenticeship_course[1].checked=false;
+			controlapprenti_display('No');
+		}
+		else if(id_value=="civil_emp")
+		{
+			document.submit_form.civil_emp[0].checked=false;
+			document.submit_form.civil_emp[1].checked=false;
+			controlcivil_display('No');
+		}
+		else if(id_value=="jammu_kashmir")
+		{
+			document.submit_form.jammu_kashmir[0].checked=false;
+			document.submit_form.jammu_kashmir[1].checked=false;
+		}
+		else if(id_value=="govt_emp")
+		{
+			document.submit_form.govt_emp[0].checked=false;
+			document.submit_form.govt_emp[1].checked=false;
+			controlgovt_display('No');
+		}
+		else if(id_value=="rly_emp")
+		{
+			document.submit_form.rly_emp[0].checked=false;
+			document.submit_form.rly_emp[1].checked=false;
+			controlrly_display('No');
+		}
+		else if(id_value=="quasi_admin")
+		{
+			document.submit_form.quasi_admin[0].checked=false;
+			document.submit_form.quasi_admin[1].checked=false;
+			controlquasi_display('No');
+		}
+		else if(id_value=="widow")
+		{
+			document.submit_form.widow[0].checked=false;
+			document.submit_form.widow[1].checked=false;
+		}
+		else if(id_value=="divorcee")
+		{
+			document.submit_form.divorcee[0].checked=false;
+			document.submit_form.divorcee[1].checked=false;
+		}
+		else if(id_value=="judi_separated")
+		{
+			document.submit_form.judi_separated[0].checked=false;
+			document.submit_form.judi_separated[1].checked=false;
+		}
+		else if(id_value=="ebc")
+		{
+			document.submit_form.ebc[0].checked=false;
+			document.submit_form.ebc[1].checked=false;
+			controlebc_display('No');
+		}
+		else if(id_value=="refund")
+		{
+			document.submit_form.refund[0].checked=false;
+			document.submit_form.refund[1].checked=false;
+			controlrefund_display('No');
+		}
+		else if(id_value=="minority_can")
+		{
+			document.submit_form.minority_can[0].checked=false;
+			document.submit_form.minority_can[1].checked=false;
+		}
+		else if(id_value=="rly_service")
+		{
+			document.submit_form.rly_service[0].checked=false;
+			document.submit_form.rly_service[1].checked=false;
+			controlrly_service('No');
+		}
+		else if(id_value=="free_travel")
+		{
+			document.submit_form.free_travel[0].checked=false;
+			document.submit_form.free_travel[1].checked=false;
+			controltravel_display('No');
+		}
+		else if(id_value=="share_score")
+		{
+			document.submit_form.share_score[0].checked=false;
+			document.submit_form.share_score[1].checked=false;
+		}
+	}
+}
+function popup_alert(value)
+{
+    $(function ()
+    {
+        $("#dialog")
+            .dialog(
+            {
+                width: 500,
+                modal: true,
+                resizable: false,
+                buttons:
+                {
+                    "Ok": function ()
+                    {
+                        $(this).dialog("close");
+                        document.getElementById(value).focus();
+                        document.getElementById("dialog").innerHTML="";
+                    }
+                }
+            });
+    });
+}
+function popup_preview()
+{
+    $(function () 
+	{
+        $("#dialog_preview").dialog(
+		{
+			width: 1000,
+			height: 700,
+			modal: true,
+			resizable: false,
+			buttons: 
+			{
+				"Edit": function () 
+				{
+					$(this).dialog("close");
+				},
+				"Confirm": function () 
+				{
+					$(this).dialog("close");
+					$("#submit").click();
+				}
+			}
+		});
+    });
+	return false;
+}
+function popup_confirmation()
+{
+    $(function () 
+	{
+        $("#dialog_confirmation").dialog(
+		{
+			width: 1000,
+			height: 700,
+			modal: true,
+			resizable: false,
+			buttons: 
+			{
+				"Edit": function () 
+				{
+					$(this).dialog("close");
+				},
+				"Confirm": function () 
+				{
+					$(this).dialog("close");
+					$("#submit").click();
+				}
+			}
+		});
+    });
+	return false;
+}
+function popup_alert1()
+{
+    $(function () 
+	{
+        $("#dialog").dialog(
+			{
+                width: 500,
+                modal: true,
+                resizable: false,
+                buttons: 
+				{
+                    "Ok": function () 
+					{
+                        $(this).dialog("close");
+                        document.getElementById("dialog").innerHTML="";
+                    }
+                }
+            });
+    });
+}
+
+function init_personal()
+{
+	
+	
+	if(document.submit_form.pwd_value.value==1)
+	{
+		if(document.submit_form.scribe_facility[0].checked==true)
+		{
+			$("#scribe_type_row").show();
+		}
+	}
+	if(document.getElementById("sslc_state").value!="")
+	{
+		//xajax_district_display_onload(document.getElementById("sslc_state").value,"sslc_district", document.getElementById("sslc_district").value);
+		var dist_load_val= document.getElementById("sslc_district").value;
+		display_district_ajax(document.getElementById("sslc_state").value,"sslc_district");
+		document.getElementById("sslc_district").value=dist_load_val;
+	}
+	if(document.getElementById("sslc_cgpa").value=='CGPA')
+	{
+		$(".sslc_cgpa_row1").show();
+		$(".sslc_cgpa_row").hide();
+	}
+	else if(document.getElementById("sslc_cgpa").value=='Percentage')
+	{
+		$(".sslc_cgpa_row").show();
+		$(".sslc_cgpa_row1").hide();
+	}
+	if(document.submit_form.ten_qua.value!='' && document.submit_form.ten_dis.value!='')
+	{
+		if(document.getElementById("tenth_passing_year").value>2017)
+		{
+			$(".tenth_passing_date").show();
+			if (document.getElementById("tenth_passing_date_d").value!="")
+			{
+				change_day_onload("tenth_passing_date", document.getElementById("tenth_passing_date_d").value, document.getElementById("tenth_passing_date_m").value);
+			}
+			if (document.getElementById("tenth_passing_date_d").value!="" && document.getElementById("tenth_passing_date_m").value!="")
+			{
+				change_month_onload("tenth_passing_date", document.getElementById("tenth_passing_date_d").value, document.getElementById("tenth_passing_date_m").value, document.getElementById("tenth_passing_date_y").value);
+			}
+		}
+		if(document.getElementById("tenth_state").value!="")
+		{
+			//xajax_district_display_onload(document.getElementById("tenth_state").value,"tenth_district", document.getElementById("tenth_district").value);
+			var dist_load_val= document.getElementById("tenth_district").value;
+			display_district_ajax(document.getElementById("tenth_state").value,"tenth_district");
+			document.getElementById("tenth_district").value=dist_load_val;
+		}
+		if(document.getElementById("tenth_cgpa").value=='CGPA')
+		{
+			$(".tenth_cgpa_row1").show();
+			$(".tenth_cgpa_row").hide();
+		}
+		else if(document.getElementById("tenth_cgpa").value=='Percentage')
+		{
+			$(".tenth_cgpa_row").show();
+			$(".tenth_cgpa_row1").hide();
+		}
+	}
+	if(document.submit_form.iti_qua.value!='' && document.submit_form.iti_tra.value!='')
+	{
+		if(document.getElementById("iti_passing_year").value>2017)
+		{
+			$(".iti_passing_date").show();
+			if (document.getElementById("iti_passing_date_d").value!="")
+			{
+				change_day_onload("iti_passing_date", document.getElementById("iti_passing_date_d").value, document.getElementById("iti_passing_date_m").value);
+			}
+			if (document.getElementById("iti_passing_date_d").value!="" && document.getElementById("iti_passing_date_m").value!="")
+			{
+				change_month_onload("iti_passing_date", document.getElementById("iti_passing_date_d").value, document.getElementById("iti_passing_date_m").value, document.getElementById("iti_passing_date_y").value);
+			}
+		}
+		if(document.getElementById("iti_state").value!="")
+		{
+			//xajax_district_display_onload(document.getElementById("iti_state").value,"iti_district", document.getElementById("iti_district").value);
+			var dist_load_val= document.getElementById("iti_district").value;
+			display_district_ajax(document.getElementById("iti_state").value,"iti_district");
+			document.getElementById("iti_district").value=dist_load_val;
+		}
+		if(document.getElementById("iti_cgpa").value=='CGPA')
+		{
+			$(".iti_cgpa_row1").show();
+			$(".iti_cgpa_row").hide();
+		}
+		else if(document.getElementById("iti_cgpa").value=='Percentage')
+		{
+			$(".iti_cgpa_row").show();
+			$(".iti_cgpa_row1").hide();
+		}
+	}
+	if(document.submit_form.dip_qua.value!='' && document.submit_form.dip_dis.value!='')
+	{
+		if(document.getElementById("diploma_passing_year").value>2017)
+		{
+			$(".diploma_passing_date").show();
+			if (document.getElementById("diploma_passing_date_d").value!="")
+			{
+				change_day_onload("diploma_passing_date", document.getElementById("diploma_passing_date_d").value, document.getElementById("diploma_passing_date_m").value);
+			}
+			if (document.getElementById("diploma_passing_date_d").value!="" && document.getElementById("diploma_passing_date_m").value!="")
+			{
+				change_month_onload("diploma_passing_date", document.getElementById("diploma_passing_date_d").value, document.getElementById("diploma_passing_date_m").value, document.getElementById("diploma_passing_date_y").value);
+			}
+		}
+		if(document.getElementById("diploma_state").value!="")
+		{
+			//xajax_district_display_onload(document.getElementById("diploma_state").value,"diploma_district", document.getElementById("diploma_district").value);
+			var dist_load_val= document.getElementById("diploma_district").value;
+			display_district_ajax(document.getElementById("diploma_state").value,"diploma_district");
+			document.getElementById("diploma_district").value=dist_load_val;
+		}
+		
+		if(document.getElementById("diploma_cgpa").value=='CGPA')
+		{
+			$(".diploma_cgpa_row1").show();
+			$(".diploma_cgpa_row").hide();
+		}
+		else if(document.getElementById("diploma_cgpa").value=='Percentage')
+		{
+			$(".diploma_cgpa_row").show();
+			$(".diploma_cgpa_row1").hide();
+		}
+	}
+	if(document.submit_form.deg_qua.value!='' && document.submit_form.deg_dis.value!='')
+	{
+		if(document.getElementById("degree_passing_year").value>2017)
+		{
+			$(".degree_passing_date").show();
+			if (document.getElementById("degree_passing_date_d").value!="")
+			{
+				change_day_onload("degree_passing_date", document.getElementById("degree_passing_date_d").value, document.getElementById("degree_passing_date_m").value);
+			}
+			if (document.getElementById("degree_passing_date_d").value!="" && document.getElementById("degree_passing_date_m").value!="")
+			{
+				change_month_onload("degree_passing_date", document.getElementById("degree_passing_date_d").value, document.getElementById("degree_passing_date_m").value, document.getElementById("degree_passing_date_y").value);
+			}
+		}
+		if(document.getElementById("degree_state").value!="")
+		{
+			//xajax_district_display_onload(document.getElementById("degree_state").value,"degree_district", document.getElementById("degree_district").value);
+			var dist_load_val= document.getElementById("degree_district").value;
+			display_district_ajax(document.getElementById("degree_state").value,"degree_district");
+			document.getElementById("degree_district").value=dist_load_val;
+		}
+		if(document.getElementById("degree_cgpa").value=='CGPA')
+		{
+			$(".degree_cgpa_row1").show();
+			$(".degree_cgpa_row").hide();
+		}
+		else if(document.getElementById("degree_cgpa").value=='Percentage')
+		{
+			$(".degree_cgpa_row").show();
+			$(".degree_cgpa_row1").hide();
+		}
+	}
+	
+	if(document.submit_form.higher_qua_type.value=='Others')
+	{
+		$(".higher_qua_type_others_row").show();
+	}
+	if(document.submit_form.higher_qua.value=='Others')
+	{
+		$(".higher_qua_others_row").show();
+	}
+	if(document.submit_form.reservation_val.value=='SC' || document.submit_form.reservation_val.value=='ST')
+	{
+		if(document.submit_form.free_travel[0].checked==true)
+		{	   
+			$("#rly_pass_row").show();
+			if(document.getElementById("rly_pass_state").value!="")
+			{
+				//xajax_district_display_onload(document.getElementById("rly_pass_state").value,"rly_pass_district", document.getElementById("rly_pass_district").value);
+				var dist_load_val= document.getElementById("rly_pass_district").value;
+				display_district_ajax(document.getElementById("rly_pass_state").value,"rly_pass_district");
+				document.getElementById("rly_pass_district").value=dist_load_val;
+			}
+			if (document.getElementById("rly_pass_date_d").value!="")
+			{
+				change_day_onload("rly_pass_date", document.getElementById("rly_pass_date_d").value, document.getElementById("rly_pass_date_m").value);
+			}
+			if (document.getElementById("rly_pass_date_d").value!="" && document.getElementById("rly_pass_date_m").value!="")
+			{
+				change_month_onload("rly_pass_date", document.getElementById("rly_pass_date_d").value, document.getElementById("rly_pass_date_m").value, document.getElementById("rly_pass_date_y").value);
+			}
+		}
+		else
+		{
+			$("#rly_pass_row").hide();
+		}
+	}
+	if(document.getElementById("pre_state_name").value!='')
+	{
+		//xajax_district_display_onload(document.getElementById("pre_state_name").value,"pre_district", document.getElementById("pre_district").value);
+		var dist_load_val= document.getElementById("pre_district").value;
+		display_district_ajax(document.getElementById("pre_state_name").value,"pre_district");
+		document.getElementById("pre_district").value=dist_load_val;
+	}
+	if(document.getElementById("pre_state_name").value!='' && document.getElementById("pre_district").value!='')
+	{
+		xajax_city_display_onload(document.getElementById("pre_state_name").value,document.getElementById("pre_district").value,"pre_city", document.getElementById("pre_city").value);
+	}
+	
+}
+function init_app()
+{
+	
+	
+	if(document.submit_form.iti_qualification.value!='')
+	{   
+		xajax_discipline_display_onload(document.submit_form.iti_qualification.value, document.submit_form.iti_discipline.value,'iti_discipline');
+	}
+	
+	if(document.submit_form.iti_qualification.value!=''  && document.submit_form.iti_discipline.value!=''  && document.submit_form.iti_exam_trade.value!='')
+	{
+		var select_exam_trade=document.submit_form.iti_exam_trade.value;
+		var select4 = document.getElementById("iti_exam_trade");
+		
+		select4.options.length = 0;
+		select4.options[select4.options.length] = new Option('select', '');
+		select4.options[select4.options.length] = new Option(document.submit_form.iti_discipline.value, document.submit_form.iti_discipline.value);
+		
+		document.submit_form.iti_exam_trade.value=select_exam_trade;
+	}
+	else
+	{
+		var select4 = document.getElementById("iti_exam_trade");
+		select4.options.length = 0;
+		select4.options[select4.options.length] = new Option('select', '');
+		select4.options[select4.options.length] = new Option(document.submit_form.iti_discipline.value, document.submit_form.iti_discipline.value);
+	}
+	
+	if(document.submit_form.diploma_qualification.value!='' && document.submit_form.diploma_discipline.value!='')
+	{
+		xajax_exam_trade_onload(document.submit_form.diploma_qualification.value, document.submit_form.diploma_discipline.value,document.submit_form.diploma_exam_trade.value,'diploma_exam_trade');
+	}
+	else
+	{
+		var select2 = document.getElementById("diploma_exam_trade");
+		select2.options.length = 0;
+		select2.options[select2.options.length] = new Option('select', '');
+	}
+	if(document.submit_form.diploma_discipline.value=='Other streams of Automobile' || document.submit_form.diploma_discipline.value=='Other streams of  Electrical' || document.submit_form.diploma_discipline.value=='Other streams of Electronics' || document.submit_form.diploma_discipline.value=='Other streams of  Mechanical')
+	{
+		$(".other_dip_dicp_row").show();
+	}
+	else
+	{
+		$(".other_dip_dicp_row").hide();
+	}
+	
+	if(document.submit_form.degree_qualification.value!='' && document.submit_form.degree_discipline.value!='')
+	{	
+		xajax_exam_trade_onload(document.submit_form.degree_qualification.value, document.submit_form.degree_discipline.value,document.submit_form.degree_exam_trade.value,'degree_exam_trade');
+	}
+	else
+	{
+		var select2 = document.getElementById("degree_exam_trade");
+		select2.options.length = 0;
+		select2.options[select2.options.length] = new Option('select', '');
+	}
+	if(document.submit_form.degree_discipline.value=='Other streams of Automobile' || document.submit_form.degree_discipline.value=='Other streams of  Electrical' || document.submit_form.degree_discipline.value=='Other streams of Electronics' || document.submit_form.degree_discipline.value=='Other streams of  Mechanical')
+	{
+		$(".other_deg_dicp_row").show();
+	}
+	else
+	{
+		$(".other_deg_dicp_row").hide();
+	}
+	xajax_discipline_pwd_display(document.submit_form.tenth_qualification.value, document.submit_form.tenth_discipline.value,document.submit_form.iti_qualification.value, document.submit_form.iti_discipline.value,document.submit_form.diploma_qualification.value, document.submit_form.diploma_discipline.value,document.submit_form.degree_qualification.value, document.submit_form.degree_discipline.value);	
+	
+	if (document.submit_form.nationality.value!='India' && document.submit_form.nationality.value!='')
+	{
+		$("#nationality_note").show();
+		if (document.submit_form.nationality.value=='A Person of Indian origin migrated from specified countries')
+		{
+			$("#nationality_origin_note").show();
+		}
+	}
+	else
+	{
+		$("#nationality_note").hide();
+	}
+	if(document.submit_form.reservation.value=='SC' || document.submit_form.reservation.value=='ST' || document.submit_form.reservation.value=='OBC-NON CREAMY LAYER' )
+	{	
+		$(".reservation_row").show();
+		$("#res_obc_ncl_note").hide();
+		
+		if(document.submit_form.caste_state.value!='')
+		{   
+			//xajax_district_display_onload(document.submit_form.caste_state.value,'caste_district', document.submit_form.caste_district.value);
+			var dist_load_val= document.getElementById("caste_district").value;
+			display_district_ajax(document.getElementById("caste_state").value,"caste_district");
+			document.getElementById("caste_district").value=dist_load_val;
+		}
+	}
+	else if(document.submit_form.reservation.value=='OBC-CREAMY LAYER' )
+	{
+		$("#res_obc_ncl_note").show();
+		$(".reservation_row").hide();
+		$("#ebc_display_row").hide();
+	}
+	else
+	{
+		$("#res_obc_ncl_note").hide();
+		$(".reservation_row").hide();
+	}
+	if(document.submit_form.gender.value=='Female')
+	{	   
+		$("#widow_divorce_row").show();
+	}
+	else
+	{
+		$("#widow_divorce_row").hide();
+	}
+	
+	if(document.submit_form.pwd[0].checked==true)
+	{	   
+		$("#vh_type_row").show();
+		$("#vh_certificate_row").show();
+		if( document.getElementById("rrb_id_status").value==37)
+		{
+			$("#other_nation_pwd_row").show();
+		}
+		
+		if(document.submit_form.pwd_state.value!='')
+		{   
+			//xajax_district_display_onload(document.submit_form.pwd_state.value,'pwd_district', document.submit_form.pwd_district.value);
+			var dist_load_val= document.getElementById("pwd_district").value;
+			display_district_ajax(document.getElementById("pwd_state").value,"pwd_district");
+			document.getElementById("pwd_district").value=dist_load_val;
+		}
+		if (document.getElementById("pwd_issue_date_d").value!="")
+		{
+			change_day_onload("pwd_issue_date", document.getElementById("pwd_issue_date_d").value, document.getElementById("pwd_issue_date_m").value);
+		}
+		if (document.getElementById("pwd_issue_date_d").value!="" && document.getElementById("pwd_issue_date_m").value!="")
+		{
+			change_month_onload("pwd_issue_date", document.getElementById("pwd_issue_date_d").value, document.getElementById("pwd_issue_date_m").value, document.getElementById("pwd_issue_date_y").value);
+		}
+	}
+	else
+	{
+		$("#vh_type_row").hide();
+	}
+	if(document.submit_form.ex_military[0].checked==true)
+	{
+		$("#ex_mp_row").show();
+		if (document.getElementById("exmp_joining_d").value!="")
+		{
+			change_day_onload("exmp_joining", document.getElementById("exmp_joining_d").value, document.getElementById("exmp_joining_m").value);
+		}
+		if (document.getElementById("exmp_joining_d").value!="" && document.getElementById("exmp_joining_m").value!="")
+		{
+			change_month_onload("exmp_joining", document.getElementById("exmp_joining_d").value, document.getElementById("exmp_joining_m").value, document.getElementById("exmp_joining_y").value);
+		}
+		if (document.getElementById("exmp_attestation_d").value!="")
+		{
+			change_day_onload("exmp_attestation", document.getElementById("exmp_attestation_d").value, document.getElementById("exmp_attestation_m").value);
+		}
+		if (document.getElementById("exmp_attestation_d").value!="" && document.getElementById("exmp_attestation_m").value!="")
+		{
+			change_month_onload("exmp_attestation", document.getElementById("exmp_attestation_d").value, document.getElementById("exmp_attestation_m").value, document.getElementById("exmp_attestation_y").value);
+		}
+		if (document.getElementById("exmp_discharge_d").value!="")
+		{
+			change_day_onload("exmp_discharge", document.getElementById("exmp_discharge_d").value, document.getElementById("exmp_discharge_m").value);
+		}
+		if (document.getElementById("exmp_discharge_d").value!="" && document.getElementById("exmp_discharge_m").value!="")
+		{
+			change_month_onload("exmp_discharge", document.getElementById("exmp_discharge_d").value, document.getElementById("exmp_discharge_m").value, document.getElementById("exmp_discharge_y").value);
+		}
+		if(document.submit_form.civil_emp[0].checked==true)
+		{
+			$(".civil_emp_row").show();
+		}
+	}
+	else
+	{
+		$("#ex_mp_row").hide();
+	}
+	if(document.submit_form.apprenticeship_course[0].checked==true)
+	{
+		$("#apprenticeship_row").show();
+		if (document.getElementById("apprenticeship_from_d").value!="")
+		{
+			change_day_onload("apprenticeship_from", document.getElementById("apprenticeship_from_d").value, document.getElementById("apprenticeship_from_m").value);
+		}
+		if (document.getElementById("apprenticeship_from_d").value!="" && document.getElementById("apprenticeship_from_m").value!="")
+		{
+			change_month_onload("apprenticeship_from", document.getElementById("apprenticeship_from_d").value, document.getElementById("apprenticeship_from_m").value, document.getElementById("apprenticeship_from_y").value);
+		}
+		
+		if (document.getElementById("apprenticeship_to_d").value!="")
+		{
+			change_day_onload("apprenticeship_to", document.getElementById("apprenticeship_to_d").value, document.getElementById("apprenticeship_to_m").value);
+		}
+		if (document.getElementById("apprenticeship_to_d").value!="" && document.getElementById("apprenticeship_to_m").value!="")
+		{
+			change_month_onload("apprenticeship_to", document.getElementById("apprenticeship_to_d").value, document.getElementById("apprenticeship_to_m").value, document.getElementById("apprenticeship_to_y").value);
+		}
+	}
+	else
+	{
+		$("#apprenticeship_row").hide();
+	}
+	if(document.submit_form.govt_emp[0].checked==true)
+	{
+		$("#govt_emp_row").show();
+	}
+	else
+	{
+		$("#govt_emp_row").hide();
+	}
+	if(document.submit_form.rly_emp[0].checked==true)
+	{
+		$("#rly_emp_row").show();
+		if (document.getElementById("rly_joining_d").value!="")
+		{
+			change_day_onload("rly_joining", document.getElementById("rly_joining_d").value, document.getElementById("rly_joining_m").value);
+		}
+		if (document.getElementById("rly_joining_d").value!="" && document.getElementById("rly_joining_m").value!="")
+		{
+			change_month_onload("rly_joining", document.getElementById("rly_joining_d").value, document.getElementById("rly_joining_m").value, document.getElementById("rly_joining_y").value);
+		}
+		if(document.submit_form.rly_service[0].checked==true)
+		{
+			$("#rly_service_note").show();
+		}
+	}
+	else
+	{
+		$("#rly_emp_row").hide();
+	}
+	if(document.submit_form.quasi_admin[0].checked==true)
+	{
+		$("#quasi_admin_row").show();
+		if (document.getElementById("quasi_from_d").value!="")
+		{
+			change_day_onload("quasi_from", document.getElementById("quasi_from_d").value, document.getElementById("quasi_from_m").value);
+		}
+		if (document.getElementById("quasi_from_d").value!="" && document.getElementById("quasi_from_m").value!="")
+		{
+			change_month_onload("quasi_from", document.getElementById("quasi_from_d").value, document.getElementById("quasi_from_m").value, document.getElementById("quasi_from_y").value);
+		}
+		
+		if (document.getElementById("quasi_to_d").value!="")
+		{
+			change_day_onload("quasi_to", document.getElementById("quasi_to_d").value, document.getElementById("quasi_to_m").value);
+		}
+		if (document.getElementById("quasi_to_d").value!="" && document.getElementById("quasi_to_m").value!="")
+		{
+			change_month_onload("quasi_to", document.getElementById("quasi_to_d").value, document.getElementById("quasi_to_m").value, document.getElementById("quasi_to_y").value);
+		}
+	}
+	else
+	{
+		$("#quasi_admin_row").hide();
+	}
+	if(document.submit_form.gender.value=='Female')
+	{
+		if(document.submit_form.widow_divorce[0].checked==true)
+		{
+			$("#widow_divorce_judicially_row").show();
+		}
+		else
+		{
+			$("#widow_divorce_judicially_row").hide();
+		}
+	}
+	if(document.getElementById("reservation").value!='SC' && document.getElementById("reservation").value!='ST' && document.submit_form.ex_military[1].checked==true &&  document.submit_form.pwd[1].checked==true &&  document.getElementById("gender").value!='Female' &&  document.getElementById("gender").value!='Transgender' &&  document.getElementById("religion").value!='Hindu')
+	{
+		$("#minority_row").show();
+	}
+	else
+	{
+		$("#minority_row").hide();
+	}
+	if(document.submit_form.reservation.value!='OBC-CREAMY LAYER' )
+	{
+		if(document.submit_form.ebc[0].checked==true && document.getElementById("reservation").value!='SC' && document.getElementById("reservation").value!='ST' && document.submit_form.ex_military[1].checked==true &&  document.submit_form.pwd[1].checked==true &&  document.getElementById("gender").value!='Female' &&  document.getElementById("gender").value!='Transgender' && (document.submit_form.minority_can[1].checked==true || (document.submit_form.minority_can[1].checked==false && document.submit_form.minority_can[0].checked==false) ))
+		{
+			$("#refund_facility_row").show();
+			if(document.submit_form.refund[0].checked==true)
+			{	   
+				$("#refund_row").show();
+				if (document.getElementById("ebc_issue_d").value!="")
+				{
+					change_day_onload("ebc_issue", document.getElementById("ebc_issue_d").value, document.getElementById("ebc_issue_m").value);
+				}
+				if (document.getElementById("ebc_issue_d").value!="" && document.getElementById("ebc_issue_m").value!="")
+				{
+					change_month_onload("ebc_issue", document.getElementById("ebc_issue_d").value, document.getElementById("ebc_issue_m").value, document.getElementById("ebc_issue_y").value);
+				}
+			}
+			else
+			{
+				$("#refund_row").hide();
+			}
+		}
+		else
+		{
+			$("#refund_facility_row").hide();
+			$("#refund_row").hide();
+		}
+	}
+	else
+	{
+		$("#ebc_display_row").hide();
+	}
+}
+
+function emailcheck(str) 
+{
+    var at="@"
+    var dot="."
+    var lat=str.indexOf(at)
+    var lstr=str.length
+    var ldot=str.indexOf(dot)
+    if (str.indexOf(at)==-1) 
+	{  
+		//alert ("The eMail address '@' convention appears to be invalid");
+		document.getElementById("dialog").innerHTML=("You must enter your full name");
+		popup_alert("email");
+		return false;
+    }
+    if (str.indexOf(at)==-1 || str.indexOf(at)==0 || str.indexOf(at)==lstr) 
+	{
+       	//alert ("The eMail address '@' convention appears to be invalid");
+		document.getElementById("dialog").innerHTML=("The eMail address '@' convention appears to be invalid");
+		popup_alert("email");
+		return false;
+    }
+    if (str.indexOf(dot)==-1 || str.indexOf(dot)==0 || str.indexOf(dot)==lstr) 
+	{
+       	//alert ("The eMail address '@' convention appears to be invalid");
+		document.getElementById("dialog").innerHTML=("The eMail address '@' convention appears to be invalid");
+		popup_alert("email");
+
+		return false;
+    }
+    if (str.indexOf(at, (lat + 1))!=-1) 
+	{
+       	//alert ("The eMail address '@' convention appears to be invalid");
+		document.getElementById("dialog").innerHTML=("The eMail address '@' convention appears to be invalid");
+		popup_alert("email");
+		return false;
+    }
+    if (str.substring(lat - 1, lat)==dot || str.substring(lat + 1, lat + 2)==dot) 
+	{
+        //alert  ("The eMail address '@' convention appears to be invalid");
+		document.getElementById("dialog").innerHTML=("The eMail address '@' convention appears to be invalid");
+		popup_alert("email");
+		return false;
+    }
+    if (str.indexOf(dot, (lat + 2))==-1)
+	{
+       	//alert ("The eMail address '@' convention appears to be invalid");
+		document.getElementById("dialog").innerHTML=("The eMail address '@' convention appears to be invalid");
+		popup_alert("email");
+		return false;
+    }
+    if (str.indexOf(" ")!=-1)
+	{
+        //alert ("The eMail address '@' convention appears to be invalid");
+		document.getElementById("dialog").innerHTML=("The eMail address '@' convention appears to be invalid");
+		popup_alert("email");
+		return false;
+    }
+    return true
+}
+
+function isDate(dateStr)
+{
+    var datePat=/^(\d{1,2})(\/|-)(\d{1,2})(\/|-)(\d{4})$/;
+    // alert(dateStr);
+    var matchArray=dateStr.match(datePat); // is the format ok?
+    // alert(dateStr);
+
+    month=matchArray[3]; // p@rse date into variables
+    day=matchArray[1];
+    year=matchArray[5];
+    if (month < 1 || month > 12)
+    { // check month range
+        document.getElementById("dialog").innerHTML=("Month must be between 1 and 12.");
+        popup_alert("dob_m");
+        return false;
+    }
+    if (day < 1 || day > 31)
+    {
+        document.getElementById("dialog").innerHTML=("Day must be between 1 and 31.");
+        popup_alert("dob_d");
+        return false;
+    }
+    if ((month==4 || month==6 || month==9 || month==11) && day==31)
+    {
+        document.getElementById("dialog").innerHTML=("Month " + month + " doesn`t have 31 days!");
+        popup_alert("dob_m");
+        return false;
+    }
+    if (month==2)
+    { // check for february 29th
+        var isleap=(year % 4==0 && (year % 100!=0 || year % 400==0));
+        if (day > 29 || (day==29 && !isleap))
+        {
+            document.getElementById("dialog").innerHTML=("February " + year + " doesn`t have " + day + " days!");
+            popup_alert("dob_m");
+            return false;
+        }
+    }
+    return true; // date is valid
+}
+
+
+function controlrel_res(val)
+{   
+    document.getElementById("date_discharge_d").value="";
+	document.getElementById("date_discharge_m").value="";
+	document.getElementById("date_discharge_y").value="";
+	document.getElementById("reason_discharge").value="";
+	document.getElementById("ex_mp_years").value="";
+	document.getElementById("ex_mp_months").value="";
+	document.getElementById("ex_mp_days").value="";
+	
+   	if(val=='Yes') 
+	{
+		$("#ex_military_self_table_row").show();
+	} 
+	else 
+	{  
+		$("#ex_military_self_table_row").hide();
+	}
+}
+function change_day(field, str)
+{
+    var select4=document.getElementById(field + "_m");
+    select4.options.length=0;
+    select4.options[select4.options.length]=new Option('MM', '');
+
+    if (str==30)
+    {
+        select4.options[select4.options.length]=new Option('01', '01');
+        select4.options[select4.options.length]=new Option('03', '03');
+        select4.options[select4.options.length]=new Option('04', '04');
+        select4.options[select4.options.length]=new Option('05', '05');
+        select4.options[select4.options.length]=new Option('06', '06');
+        select4.options[select4.options.length]=new Option('07', '07');
+        select4.options[select4.options.length]=new Option('08', '08');
+        select4.options[select4.options.length]=new Option('09', '09');
+        select4.options[select4.options.length]=new Option(10, 10);
+        select4.options[select4.options.length]=new Option(11, 11);
+        select4.options[select4.options.length]=new Option(12, 12);
+    }
+    else if (str==31)
+    {
+        select4.options[select4.options.length]=new Option('01', '01');
+        select4.options[select4.options.length]=new Option('03', '03');
+        select4.options[select4.options.length]=new Option('05', '05');
+        select4.options[select4.options.length]=new Option('07', '07');
+        select4.options[select4.options.length]=new Option('08', '08');
+        select4.options[select4.options.length]=new Option(10, 10);
+        select4.options[select4.options.length]=new Option(12, 12);
+    }
+    else
+    {
+        select4.options.length=0;
+        select4.options[select4.options.length]=new Option('MM', '');
+        select4.options[select4.options.length]=new Option('01', '01');
+		select4.options[select4.options.length]=new Option('02', '02');
+        select4.options[select4.options.length]=new Option('03', '03');
+        select4.options[select4.options.length]=new Option('04', '04');
+        select4.options[select4.options.length]=new Option('05', '05');
+        select4.options[select4.options.length]=new Option('06', '06');
+        select4.options[select4.options.length]=new Option('07', '07');
+        select4.options[select4.options.length]=new Option('08', '08');
+        select4.options[select4.options.length]=new Option('09', '09');
+        select4.options[select4.options.length]=new Option(10, 10);
+        select4.options[select4.options.length]=new Option(11, 11);
+        select4.options[select4.options.length]=new Option(12, 12);
+    }
+}
+
+function change_day_onload(field, str, month_value)
+{
+    var select4=document.getElementById(field + "_m");
+    select4.options.length=0;
+    select4.options[select4.options.length]=new Option('MM', '');
+	
+	if (str==30)
+    {
+        select4.options[select4.options.length]=new Option('01', '01');
+        select4.options[select4.options.length]=new Option('03', '03');
+        select4.options[select4.options.length]=new Option('04', '04');
+        select4.options[select4.options.length]=new Option('05', '05');
+        select4.options[select4.options.length]=new Option('06', '06');
+        select4.options[select4.options.length]=new Option('07', '07');
+        select4.options[select4.options.length]=new Option('08', '08');
+        select4.options[select4.options.length]=new Option('09', '09');
+        select4.options[select4.options.length]=new Option(10, 10);
+        select4.options[select4.options.length]=new Option(11, 11);
+        select4.options[select4.options.length]=new Option(12, 12);
+    }
+    else if (str==31)
+    {
+        select4.options[select4.options.length]=new Option('01', '01');
+        select4.options[select4.options.length]=new Option('03', '03');
+        select4.options[select4.options.length]=new Option('05', '05');
+        select4.options[select4.options.length]=new Option('07', '07');
+        select4.options[select4.options.length]=new Option('08', '08');
+        select4.options[select4.options.length]=new Option(10, 10);
+        select4.options[select4.options.length]=new Option(12, 12);
+    }
+    else
+    {
+        select4.options.length=0;
+        select4.options[select4.options.length]=new Option('MM', '');
+      	select4.options[select4.options.length]=new Option('01', '01');
+		select4.options[select4.options.length]=new Option('02', '02');
+        select4.options[select4.options.length]=new Option('03', '03');
+        select4.options[select4.options.length]=new Option('04', '04');
+        select4.options[select4.options.length]=new Option('05', '05');
+        select4.options[select4.options.length]=new Option('06', '06');
+        select4.options[select4.options.length]=new Option('07', '07');
+        select4.options[select4.options.length]=new Option('08', '08');
+        select4.options[select4.options.length]=new Option('09', '09');
+        select4.options[select4.options.length]=new Option(10, 10);
+        select4.options[select4.options.length]=new Option(11, 11);
+        select4.options[select4.options.length]=new Option(12, 12);
+    }
+	
+    document.getElementById(field + "_m").value=month_value;
+}
+
+function change_month(field, str)
+{
+    if (field=='dob' || field=='login_dob' || field=='scribe_reg_dob' || field=='scribe_stnd_dob')
+    {
+        max_value=2000;
+		
+    }
+	else if (field=='exmp_discharge')
+    {
+        max_value=2019;
+    }
+    else
+    {
+        max_value=2018;
+    }
+    var select5=document.getElementById(field + "_y");
+    select5.options.length=0;
+    select5.options[select5.options.length]=new Option('YYYY', '');
+
+    if (document.getElementById(field + "_d").value==29 && str==2)
+    {
+        for (i=1952; i <=max_value; i=i + 4)
+        {
+            select5.options[select5.options.length]=new Option(i, i);
+        }
+    }
+    else if (((document.getElementById(field + "_d").value==30) || (document.getElementById(field + "_d").value==31)) && (str==12))
+    {
+        for (i=max_value - 1; i >=1950; i--)
+        {
+            select5.options[select5.options.length]=new Option(i, i);
+        }
+    }
+    else if (((document.getElementById(field + "_d").value==30) || (document.getElementById(field + "_d").value==30)) && (str==12))
+    {
+        for (i=max_value - 1; i >=1950; i--)
+        {
+            select5.options[select5.options.length]=new Option(i, i);
+        }
+    }
+	else if (((document.getElementById(field + "_d").value>01) && (str==7)) || str>7)
+    {
+        for (i=max_value - 1; i >=1950; i--)
+        {
+            select5.options[select5.options.length]=new Option(i, i);
+        }
+    }
+	else if (((document.getElementById(field + "_d").value>02) && (str==12)))
+    {
+       if (field=='date_discharge' || field=='dob')
+	   {
+	    for (i=max_value - 1; i >=1950; i--)
+        {
+            select5.options[select5.options.length]=new Option(i, i);
+        }
+	   }
+	   else
+	   {
+		   for (i=max_value; i >=1950; i--)
+			{
+				select5.options[select5.options.length]=new Option(i, i);
+			}
+	   }
+    }
+    else
+    {
+        for (i=max_value; i >=1950; i--)
+        {
+            select5.options[select5.options.length]=new Option(i, i);
+        }
+    }
+}
+
+function change_month_onload(field, day_value, str, year_val)
+{
+    if (field=='dob' || field=='scribe_reg_dob' || field=='scribe_stnd_dob')
+    {
+        max_value=2000;
+    }
+	else if (field=='exmp_discharge')
+    {
+        max_value=2019;
+    }
+    else
+    {
+        max_value=2018;
+    }
+	
+    var select5=document.getElementById(field + "_y");
+    select5.options.length=0;
+    select5.options[select5.options.length]=new Option('YYYY', '');
+
+    if (day_value==29 && str==2)
+    {
+        for (i=1952; i <=max_value; i=i + 4)
+        {
+            select5.options[select5.options.length]=new Option(i, i);
+        }
+    }
+    else if (((day_value==30) || (day_value==31)) && (str==10 || str==11 || str==12))
+    {
+        for (i=max_value - 1; i >=1950; i--)
+        {
+            select5.options[select5.options.length]=new Option(i, i);
+        }
+    }
+    else if ((day_value==30) && (str==10 || str==11 || str==12))
+    {
+        for (i=max_value - 1; i >=1950; i--)
+        {
+            select5.options[select5.options.length]=new Option(i, i);
+        }
+    }
+	else if (((document.getElementById(field + "_d").value>01) && (str==7)) || str>7)
+    {
+        for (i=max_value - 1; i >=1950; i--)
+        {
+            select5.options[select5.options.length]=new Option(i, i);
+        }
+    }
+	else if ((document.getElementById(field + "_d").value>02) && (str==12))
+    {
+       if (field=='date_discharge' || field=='dob')
+	   {
+		for (i=max_value - 1; i >=1950; i--)
+        {
+            select5.options[select5.options.length]=new Option(i, i);
+        }
+	   }
+	   else
+	   {
+		   for (i=max_value; i >=1950; i--)
+			{
+				select5.options[select5.options.length]=new Option(i, i);
+			}
+	   }
+    }
+    else
+    {
+        for (i=max_value; i >=1950; i--)
+        {
+            select5.options[select5.options.length]=new Option(i, i);
+        }
+    }
+    document.getElementById(field + "_y").value=year_val;
+}

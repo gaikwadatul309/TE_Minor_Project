@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<!-- saved from url=(0042)http://169.38.88.214/alptech2017/index.php -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <noscript>
+        &lt;meta http-equiv='refresh' content=''&gt;
+    </noscript>
+    <title>
+        - Railway Recritment Board
+    </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=">
+    <meta name="copyright" content="Copyright,Intentinfotech.com. All rights reserved">
+    <meta name="description" content="Railway Recruitment Board">
+    <meta name="keywords" content="Railway Recruitment Board">
+	<link rel="shortcut icon" href="http://169.38.88.214/alptech2017/favicon.ico" type="image/x-icon">
+<link rel="icon" href="http://169.38.88.214/alptech2017/favicon.ico" type="image/x-icon">
+    <link href="./- Railway Recritment Board_files/bootstrap.min.css" rel="stylesheet" media="screen,print">
+    <link type="text/css" href="./- Railway Recritment Board_files/jquery-ui.custom.css" rel="stylesheet">
+	<script type="text/javascript" src="./- Railway Recritment Board_files/jquery.min.js.download"></script>
+	<script type="text/javascript" src="./- Railway Recritment Board_files/jquery-ui.min.js.download"></script>
+    <script type="text/javascript" src="./- Railway Recritment Board_files/client_side_functions.js.download"></script>
+    <script src="./- Railway Recritment Board_files/bootstrap.min.js.download"></script>
+  	</head><body style="overflow-x: hidden;"><div style="display:none;" id="dialog" title="Alert"></div>
+	<script type="text/javascript">
+	function showapplication()
+	{
+		if (document.getElementById("rrb").value=='') 
+		{
+			document.getElementById("dialog").innerHTML = ("You must select your State as per Residential address");
+			popup_alert("rrb");
+			return false;
+		}
+		if (document.getElementById("cbIagree1").checked==false) 
+		{
+			document.getElementById("dialog").innerHTML = ("Please click on the checkbox to Accept that you have gone through the above instructions");
+			popup_alert("cbIagree1");
+			return false;
+		}
+		else
+		{
+			
+			document.getElementById("reg_type").value='Registration';
+			document.showapp.submit();
+		}
+	}
+	function showapplication1()
+	{
+		if (document.getElementById("rrb").value=='') 
+		{
+			document.getElementById("dialog").innerHTML = ("You must select your State as per Residential address");
+			popup_alert("rrb");
+			return false;
+		}
+		if (document.getElementById("cbIagree1").checked==false) 
+		{
+			document.getElementById("dialog").innerHTML = ("Please click on the checkbox to Accept that you have gone through the above instructions");
+			popup_alert("cbIagree1");
+			return false;
+		}
+		else
+		{
+			document.getElementById("reg_type").value='Login';
+			document.showapp.submit();
+		}
+	}
+</script>
+    
+    <style>
+	.table{ }
+	.pad_top tr td{ border-top:none !important }
+	.red_txt{ color:#a42e0a}
+        .logo {
+            background: #003980 url("template/default/images/blueHeaderBg.png") no-repeat scroll center top;
+            color: #fff;
+            min-height: 96px;
+        }
+		.table td, .table th{ padding:5px !important}
+		.table-list .table th:first-child, .table-list .table th:last-child{ color:#000 !important}
+		#menu1  a{ color:#333; background:#fff !important}
+		.btn-primary{
+		background-color: #337ab7 !important;
+    	border-color: #2e6da4 !important;
+    	color: #fff !important;
+		width:auto !important
+		}
+    </style>
+ 
+
+
+
+ <table width="100%" class="logo">
+  	<tbody><tr>
+            <td width="150"><img src="./- Railway Recritment Board_files/r_logo.png" style="margin:0 auto;float:right"></td>
+            <td style="text-align:center; font-weight:bold;  font-size:20px">
+                GOVERNMENT OF INDIA
+                <br><span style="font-size:20px; font-weight:bold; color:#fff; text-transform:uppercase">MINISTRY OF RAILWAYS</span>
+                <br><span style="font-size:20px; font-weight:bold;  color:#fff; text-transform:uppercase">RAILWAY RECRUITMENT BOARDS </span>
+            </td>
+            <td width="140"> <img src="./- Railway Recritment Board_files/logo-r.png" height="90" style="float:left"></td>
+        </tr>
+  </tbody></table>
+        <div class="row">
+            <div class="" style="margin-bottom:0px !important; background:#e3eaf3; border-bottom:1px solid #d6d6d6 ; padding:6px !important;" id="wel_txt">
+                <div class="container" id="scroll_txt " style="">
+                    <h4 style="text-align:left; float:left; color:#0166c0; text-align:center">CEN 01/2018 <br> (Recruitment of Assistant Loco Pilot (ALP) &amp; Technicians)</h4>
+                    <a href="http://www.recruit-app.com/rrb_helpdesk/contact_us.php" class="btn btn-danger pull-right" style="margin-left:5px; margin-top:5px;">Help Desk</a>
+                    <a href="http://www.recruit-app.com/rrb_helpdesk/faq.php" class="btn btn-danger pull-right" style="margin-top:5px;"> FAQ</a>
+                    <a href="http://recruit-app.com/rrb_vacancy/reports_sum.php" class="btn btn-danger pull-right" style="margin-top:5px; margin-right:5px;"> Vancancy Table</a>
+                    <span class="dropdown pull-right" style="position:relative; top:5px; margin-right:5px;">
+                      <button class="btn btn-danger dropdown-toggle" type="button" data-toggle="dropdown">Download  CEN/Corrigendum
+                      <span class="caret"></span></button>
+                      <ul class="dropdown-menu">
+                        <li><a href="http://169.38.88.214/alptech2017/cen.pdf" target="_blank">CEN (1/2018)</a></li>
+                       <li><a href="http://169.38.88.214/alptech2017/Corrigendum.pdf" target="_blank">Corrigendum</a></li>
+                       <!-- <li><a href="annexures3.pdf" target="_blank">Annexures-I</a></li>
+                        <li><a href="annexures4.pdf" target="_blank">Annexures-II</a></li>
+                        <li><a href="annexures1.pdf" target="_blank">Annexures-II(A)</a></li>
+                        <li><a href="annexures3.pdf" target="_blank">Annexures-III</a></li>
+                        <li><a href="annexures4.pdf" target="_blank">Annexures-IV</a></li>
+                        <li><a href="annexures3.pdf" target="_blank">Annexures-V(A)</a></li>
+                        <li><a href="annexures3.pdf" target="_blank">Annexures-V(B)</a></li>
+                        <li><a href="annexures3.pdf" target="_blank">Annexures-V(C)</a></li>
+                        <li><a href="annexures3.pdf" target="_blank">Annexures-V(D)</a></li>
+                        <li><a href="annexures4.pdf" target="_blank">Annexures-VI</a></li>-->
+                      </ul>
+                    </span> 
+                     
+                </div>
+           </div>
+	</div>
+        
+<div class="container" style="min-height:550px; margin-top:5px">
+<p style="color:#900; font-size:17px; font-weight:bold; margin:8px 5px;"><marquee direction="left">The closing time of online payment mode has been extended upto 22.00hrs of 31.03.2018
+
+</marquee></p>
+<fieldset>
+<legend>Important Dates</legend>
+<div class="table-responsive">
+    <table class="table table-bordered table-striped">
+         <tbody>
+            <tr class="" style="background:#dfdfdf">
+                <td>Details</td>
+                <td>Dates</td>
+            </tr>
+            <tr>
+                <td width="50%">
+                    Opening Date &amp; Time for Online Registration and submission of Application
+                    
+                </td>
+                <td>03-02-2018 at 10.00 hrs.</td>
+            </tr>
+            <tr>
+                <td>
+                    Closing Date &amp; Time for submission of Online application
+                    
+                </td>
+                <td>31-03-2018 at 23.59 hrs.</td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><span style="font-weight:bold">Last Date &amp; Time for Payment of Application Fee</span></td>
+            </tr>
+            <tr>
+                <td>
+                    Online payment (<span style="font-weight:bold">Net Banking / Credit Card / Debit Card</span> )
+                </td>
+                <td>30-03-2018 at 23.59 hrs.</td>
+            </tr>
+            <tr>
+                <td>
+                    SBI Bank Challan
+                </td>
+                <td>28-03-2018 at 15.00 hrs. </td>
+            </tr>
+            <tr>
+                <td>
+                    Post Office Challan
+                </td>
+                <td>27-03-2018 at 15.00 hrs. </td>
+            </tr>
+            </tbody>
+   		 </table>
+     </div>
+</fieldset>
+<fieldset>
+<legend>Steps to be followed while Registering &amp; Filing the Online Application</legend>
+          <h4 class="red_txt" style="text-align:center"> </h4>
+          <div class="table-responsive">
+          <div class="col-lg-12" style="height:200px; overflow-y:scroll; padding:0px">
+          <table class="table table-bordered table-striped">
+            <tbody><tr>
+                <td width="70">Step 1:- </td>
+                <td>Click on the “New Registration” Button below if you are Registering for the first time.</td>
+            </tr>
+        
+            <tr>
+                <td>Step 2:-</td>
+                <td style=" ">
+                   Fill up the basic details viz. Full Name, Father’s name, Mother's Name, Date of Birth, State,  Mobile number, E-mail Id, Aadhar number etc.
+                </td>
+            </tr>
+        
+            <tr>
+                <td>Step 3:-</td>
+                <td style=" ">
+                  Complete the Registration process by filling all the details for generating a Registration Id  &amp;  Password for login and OTPs (One Time Password) for validation. The Registration Id and password will be displayed on the screen. OTPs will be sent to your registered mobile number and E-mail id.
+                </td>
+            </tr>
+            
+            <tr>
+                <td>Step 4:-</td>
+                <td style="">
+                   Retrieve OTPs from mobile number and E-mail and validate them to proceed with the filling up of application. 
+                </td>
+            </tr>
+            <tr>
+                <td>Step 5:-</td>
+                <td style="">
+                  Click On ‘Apply/Edit’ option on the screen. Complete the Eligibility Criteria Form and Submit. Before submitting the Eligibility Criteria Form, be sure that all the information is filled correctly. After submission, you can modify only by Paying the modification fee of Rs 100/-.
+                </td>
+            </tr>
+            
+            <tr>
+                <td>Step 6:-</td>
+                <td style="">
+                 After submission of Eligibility criteria form, make the Payment by clicking on the Payment tab. Only after payment you will be able to fill the additional details and upload Photos etc.
+                </td>
+            </tr>
+           
+            <tr>
+                <td>Step 7:-</td>
+                <td style="">
+                <div class="row">
+                	<p style="font-size:15px; padding-left:10px; font-weight:bold">&nbsp;Select the Payment Mode</p>
+                	<div class="col-lg-12"><strong>1)Bank</strong></div>
+                    <div class="col-lg-12">
+                    	<ol type="a">
+                        	<li><strong>Net Banking /Credit card/Debit card etc :</strong> Select the mode of payment of fees from the options available such as Net Banking, Credit Card/Debit Card etc., Enter the details required on the relevant option screen and submit the payment. After a while you will get the payment response as "Success" once bank has received your fees, or else a "Failure" response will be displayed on the screen along with the reason for failure.</li>
+                            <li><strong>Click on "SBI Branch" from the options. Fill the mobile number &amp; date of birth and click "Confirm" button. Then click on the “Click here to Download” the form in PDF, take the print of the form , fill relevant details and pay the fees at your nearest SBI branch.</strong></li><strong>
+                        </strong></ol><strong>
+                    </strong></div><strong>
+                    
+                	<div class="col-lg-12"><strong>2)Post Office</strong> </div>
+                    <div class="col-lg-12">
+                    	<ol type="a">
+                            <li>For Payment through Post Office, Select Post Office from the drop down and Click the button to proceed for generating a Challan. Take print of the Challan and pay the fees in the nearest computerized post office.</li>
+                        </ol>
+                    </div>
+                    
+                </strong></div><strong>
+                </strong></td>
+            </tr>
+            <tr>
+                <td>Note</td>
+                <td>
+                   No other mode of payment is permitted.
+                </td>
+            </tr>
+            <tr>
+                <td>Step 8:-</td>
+
+                <td style=" ">
+                   After successful payment, Click on the “Fill additional details” and complete the remaining application form by filling up additional details and Photo(s)/Document(s) Upload. Before uploading photo with name &amp; date printed on it, be sure that the scanned photo is as per the sample photos by clicking the same available below the browse button. 
+                </td>
+            </tr>
+            
+             <tr>
+                <td>Step 9:-</td>
+                <td style=" ">
+                  <strong>Final Submit.</strong> Before clicking on “Final submit”, review all the details filled and be sure that all are correct. After submission, it can be edited only by paying the modification fee of Rs 250/- . Modification can be done only twice. Hence before submitting eligibility criteria form and final application submit, be very sure of the correctness and then submit.
+                </td>
+            </tr>
+        </tbody></table>
+       
+</div>
+         <p>&nbsp;</p> <div class="">
+         <div class="col-lg-3">&nbsp;</div>
+         <div class="col-lg-6">
+          	<form name="showapp" method="post" action="http://169.38.88.214/alptech2017/state_divide.php">
+            	 <center>
+                 <div class="col-lg-7">
+                    <label style=";" class="x-form-item-label" id="ext-gen20">
+                        <span>State as per Residential address:<em>*</em></span>
+                    </label>
+                    </div>
+                    <div class="col-lg-5">
+                    <select id="rrb" name="rrb" type="select" class="form-control">
+                        <option value="">Select</option>
+                        <option value="1">ANDAMAN AND NICOBAR</option>
+                        <option value="2">ANDHRA PRADESH</option>
+                        <option value="3">ARUNACHAL PRADESH</option>
+                        <option value="4">ASSAM</option>
+                        <option value="5">BIHAR</option>
+                        <option value="6">CHANDIGARH</option>
+                        <option value="7">CHHATTISGARH</option>
+                        <option value="8">DADRA AND NAGAR HAVELI</option>
+                        <option value="9">DAMAN AND DIU</option>
+                        <option value="10">DELHI</option>
+                        <option value="11">GOA</option>
+                        <option value="12">GUJARAT</option>
+                        <option value="13">HARYANA</option>
+                        <option value="14">HIMACHAL PRADESH</option>
+                        <option value="15">JAMMU AND KASHMIR</option>
+                        <option value="16">JHARKHAND</option>
+                        <option value="17">KARNATAKA</option>
+                        <option value="18">KERALA</option>
+                        <option value="19">LAKSHADWEEP</option>
+                        <option value="20">MADHYAPRADESH</option>
+                        <option value="21">MAHARASTRA</option>
+                        <option value="22">MANIPUR</option>
+                        <option value="23">MEGHALAYA</option>
+                        <option value="24">MIZORAM</option>
+                        <option value="25">NAGALAND</option>
+                        <option value="26">ODISHA</option>
+                        <option value="27">PUDUCHERRY</option>
+                        <option value="28">PUNJAB</option>
+                        <option value="29">RAJASTHAN</option>
+                        <option value="30">SIKKIM</option>
+                        <option value="31">TAMIL NADU</option>
+                        <option value="32">TELANGANA</option>
+                        <option value="33">TRIPURA</option>
+                        <option value="34">UTTAR PRADESH</option>
+                        <option value="35">UTTARAKHAND</option>
+                        <option value="36">WEST BENGAL</option>
+                        <option value="37">OTHER NATIONS</option>
+                    </select> 
+                </div></center>
+                </form></div>
+                <div class="col-lg-3">&nbsp;</div>
+                <div style="clear:both"></div><br>
+                <center>
+                    <label style="width: 380px;" class="x-form-item-label" id="ext-gen20">
+                        <span>I Accept that I have gone through all the instructions
+                    </span></label>
+                    <input type="checkbox" name="cbIagree1" id="cbIagree1" autocomplete="off" class=" x-form-checkbox x-form-field" value="cbIagree1" style="position:relative;top:2px;left:5px;width: 20px;"><br>
+                    
+                </center>
+                <center>
+                    <div style="display: inline;" id="ImageButton1_Container">
+
+							<button onclick="return showapplication();" class="btn btn-danger"> New Registration</button>
+                            <button onclick="return showapplication1();" class="btn btn-danger">  Already Registered</button>
+                             <input id="reg_type" type="hidden" name="reg_type" maxlength="30">
+                        <br>
+                    </div>
+                </center>
+            
+            </div>
+          </div>
+          
+      
+        </fieldset></div><br>
+          
+         <footer style="border-top:3px solid #373737" id="ftr">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                       <p style="text-align:center"> 
+Copyright @ 2018, RRB All Rights Reserved.</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+</body></html>

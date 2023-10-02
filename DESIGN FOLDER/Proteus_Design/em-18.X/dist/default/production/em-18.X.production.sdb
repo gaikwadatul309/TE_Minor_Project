@@ -1,0 +1,301 @@
+[p LITE_MODE AUTOSTATIC PIC14 PICREGULAR PICMID ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip 16F877A ]
+[d frameptr 6 ]
+"4 C:\Program Files (x86)\Microchip\xc8\v1.32\sources\common\abdiv.c
+[v ___abdiv __abdiv `(c  1 e 1 0 ]
+"4 C:\Program Files (x86)\Microchip\xc8\v1.32\sources\common\abmod.c
+[v ___abmod __abmod `(c  1 e 1 0 ]
+"33 C:\Program Files (x86)\Microchip\xc8\v1.32\sources\common\abtoft.c
+[v ___abtoft __abtoft `(f  1 e 3 0 ]
+"6 C:\Program Files (x86)\Microchip\xc8\v1.32\sources\common\aldiv.c
+[v ___aldiv __aldiv `(l  1 e 4 0 ]
+"5 C:\Program Files (x86)\Microchip\xc8\v1.32\sources\common\almod.c
+[v ___almod __almod `(l  1 e 4 0 ]
+"42 C:\Program Files (x86)\Microchip\xc8\v1.32\sources\common\altoft.c
+[v ___altoft __altoft `(f  1 e 3 0 ]
+"6 C:\Program Files (x86)\Microchip\xc8\v1.32\sources\common\atdiv.c
+[v ___atdiv __atdiv `(m  1 e 3 0 ]
+"6 C:\Program Files (x86)\Microchip\xc8\v1.32\sources\common\atmod.c
+[v ___atmod __atmod `(m  1 e 3 0 ]
+"37 C:\Program Files (x86)\Microchip\xc8\v1.32\sources\common\attoft.c
+[v ___attoft __attoft `(f  1 e 3 0 ]
+"6 C:\Program Files (x86)\Microchip\xc8\v1.32\sources\common\awdiv.c
+[v ___awdiv __awdiv `(i  1 e 2 0 ]
+"6 C:\Program Files (x86)\Microchip\xc8\v1.32\sources\common\awmod.c
+[v ___awmod __awmod `(i  1 e 2 0 ]
+"32 C:\Program Files (x86)\Microchip\xc8\v1.32\sources\common\awtoft.c
+[v ___awtoft __awtoft `(f  1 e 3 0 ]
+"62 C:\Program Files (x86)\Microchip\xc8\v1.32\sources\common\float.c
+[v ___ftpack __ftpack `(f  1 e 3 0 ]
+"86 C:\Program Files (x86)\Microchip\xc8\v1.32\sources\common\ftadd.c
+[v ___ftadd __ftadd `(f  1 e 3 0 ]
+"4 C:\Program Files (x86)\Microchip\xc8\v1.32\sources\common\ftge.c
+[v ___ftge __ftge `(b  1 e 0 0 ]
+"62 C:\Program Files (x86)\Microchip\xc8\v1.32\sources\common\ftmul.c
+[v ___ftmul __ftmul `(f  1 e 3 0 ]
+"15 C:\Program Files (x86)\Microchip\xc8\v1.32\sources\common\ftneg.c
+[v ___ftneg __ftneg `(f  1 e 3 0 ]
+"18 C:\Program Files (x86)\Microchip\xc8\v1.32\sources\common\ftsub.c
+[v ___ftsub __ftsub `(f  1 e 3 0 ]
+"44 C:\Program Files (x86)\Microchip\xc8\v1.32\sources\common\fttol.c
+[v ___fttol __fttol `(l  1 e 4 0 ]
+"4 C:\Program Files (x86)\Microchip\xc8\v1.32\sources\common\lbdiv.c
+[v ___lbdiv __lbdiv `(uc  1 e 1 0 ]
+"4 C:\Program Files (x86)\Microchip\xc8\v1.32\sources\common\lbmod.c
+[v ___lbmod __lbmod `(uc  1 e 1 0 ]
+"27 C:\Program Files (x86)\Microchip\xc8\v1.32\sources\common\lbtoft.c
+[v ___lbtoft __lbtoft `(f  1 e 3 0 ]
+"6 C:\Program Files (x86)\Microchip\xc8\v1.32\sources\common\lldiv.c
+[v ___lldiv __lldiv `(ul  1 e 4 0 ]
+"6 C:\Program Files (x86)\Microchip\xc8\v1.32\sources\common\llmod.c
+[v ___llmod __llmod `(ul  1 e 4 0 ]
+"35 C:\Program Files (x86)\Microchip\xc8\v1.32\sources\common\lltoft.c
+[v ___lltoft __lltoft `(f  1 e 3 0 ]
+"6 C:\Program Files (x86)\Microchip\xc8\v1.32\sources\common\ltdiv.c
+[v ___ltdiv __ltdiv `(um  1 e 3 0 ]
+"6 C:\Program Files (x86)\Microchip\xc8\v1.32\sources\common\ltmod.c
+[v ___ltmod __ltmod `(um  1 e 3 0 ]
+"30 C:\Program Files (x86)\Microchip\xc8\v1.32\sources\common\lttoft.c
+[v ___lttoft __lttoft `(f  1 e 3 0 ]
+"6 C:\Program Files (x86)\Microchip\xc8\v1.32\sources\common\lwdiv.c
+[v ___lwdiv __lwdiv `(ui  1 e 2 0 ]
+"6 C:\Program Files (x86)\Microchip\xc8\v1.32\sources\common\lwmod.c
+[v ___lwmod __lwmod `(ui  1 e 2 0 ]
+"28 C:\Program Files (x86)\Microchip\xc8\v1.32\sources\common\lwtoft.c
+[v ___lwtoft __lwtoft `(f  1 e 3 0 ]
+"15 C:\Program Files (x86)\Microchip\xc8\v1.32\sources\common\Umul16.c
+[v ___wmul __wmul `(ui  1 e 2 0 ]
+"15 C:\Program Files (x86)\Microchip\xc8\v1.32\sources\common\Umul24.c
+[v ___tmul __tmul `(um  1 e 3 0 ]
+"15 C:\Program Files (x86)\Microchip\xc8\v1.32\sources\common\Umul32.c
+[v ___lmul __lmul `(ul  1 e 4 0 ]
+"4 C:\Program Files (x86)\Microchip\xc8\v1.32\sources\common\Umul8.c
+[v ___bmul __bmul `(uc  1 e 1 0 ]
+"6 C:\Program Files (x86)\Microchip\xc8\v1.32\sources\pic\eeprom.c
+[v _eecpymem eecpymem `(v  1 e 0 0 ]
+"24
+[v _memcpyee memcpyee `(v  1 e 0 0 ]
+"48
+[v ___eetoc __eetoc `(uc  1 e 1 0 ]
+"56
+[v ___eetoi __eetoi `(ui  1 e 2 0 ]
+"64
+[v ___eetom __eetom `(um  1 e 3 0 ]
+"72
+[v ___eetol __eetol `(ul  1 e 4 0 ]
+"80
+[v ___ctoee __ctoee `(uc  1 e 1 0 ]
+"87
+[v ___itoee __itoee `(ui  1 e 2 0 ]
+"94
+[v ___mtoee __mtoee `(um  1 e 3 0 ]
+"101
+[v ___ltoee __ltoee `(ul  1 e 4 0 ]
+"108
+[v ___eetoft __eetoft `(f  1 e 3 0 ]
+"116
+[v ___eetofl __eetofl `(d  1 e 3 0 ]
+"124
+[v ___fttoee __fttoee `(f  1 e 3 0 ]
+"131
+[v ___fltoee __fltoee `(d  1 e 3 0 ]
+"49 C:\Program Files (x86)\Microchip\xc8\v1.32\sources\pic\ftdiv.c
+[v ___ftdiv __ftdiv `(f  1 e 3 0 ]
+"4 F:\Electronics\Embeded\PIC Microcontroller\EM-18 RFID and PIC\MPLAB XC8\em-18.X\lcd.h
+[v _Lcd_Port Lcd_Port `(v  1 e 0 0 ]
+"26
+[v _Lcd_Cmd Lcd_Cmd `(v  1 e 0 0 ]
+"35
+[v _Lcd_Clear Lcd_Clear `(i  1 e 2 0 ]
+"41
+[v _Lcd_Set_Cursor Lcd_Set_Cursor `(v  1 e 0 0 ]
+"62
+[v _Lcd_Init Lcd_Init `(v  1 e 0 0 ]
+"81
+[v _Lcd_Write_Char Lcd_Write_Char `(v  1 e 0 0 ]
+"97
+[v _Lcd_Write_String Lcd_Write_String `(v  1 e 0 0 ]
+"104
+[v _Lcd_Shift_Right Lcd_Shift_Right `(v  1 e 0 0 ]
+"110
+[v _Lcd_Shift_Left Lcd_Shift_Left `(v  1 e 0 0 ]
+"26 F:\Electronics\Embeded\PIC Microcontroller\EM-18 RFID and PIC\MPLAB XC8\em-18.X\main.c
+[v _main main `(v  1 e 0 0 ]
+"1 F:\Electronics\Embeded\PIC Microcontroller\EM-18 RFID and PIC\MPLAB XC8\em-18.X\uart.h
+[v _UART_Init UART_Init `(uc  1 e 1 0 ]
+"24
+[v _UART_TX_Empty UART_TX_Empty `(uc  1 e 1 0 ]
+"29
+[v _UART_Data_Ready UART_Data_Ready `(uc  1 e 1 0 ]
+"33
+[v _UART_Read UART_Read `(uc  1 e 1 0 ]
+"40
+[v _UART_Read_Text UART_Read_Text `(v  1 e 0 0 ]
+"47
+[v _UART_Write UART_Write `(v  1 e 0 0 ]
+"53
+[v _UART_Write_Text UART_Write_Text `(v  1 e 0 0 ]
+"1029 C:\Program Files (x86)\Microchip\xc8\v1.32\include\pic16f877a.h
+[v _TXREG TXREG `VEuc  1 e 1 @25 ]
+"1035
+[v _RCREG RCREG `VEuc  1 e 1 @26 ]
+"1335
+[v _TRISB TRISB `VEuc  1 e 1 @134 ]
+"2028
+[v _SPBRG SPBRG `VEuc  1 e 1 @153 ]
+"2231
+[v _EEDATA EEDATA `VEuc  1 e 1 @268 ]
+"2237
+[v _EEADR EEADR `VEuc  1 e 1 @269 ]
+"2255
+[v _EECON1 EECON1 `VEuc  1 e 1 @396 ]
+"2299
+[v _EECON2 EECON2 `VEuc  1 e 1 @397 ]
+"2339
+[v _BRGH BRGH `VEb  1 e 0 @1218 ]
+"2349
+[v _CARRY CARRY `VEb  1 e 0 @24 ]
+"2405
+[v _CREN CREN `VEb  1 e 0 @196 ]
+"2441
+[v _GIE GIE `VEb  1 e 0 @95 ]
+"2515
+[v _RB2 RB2 `VEb  1 e 0 @50 ]
+"2517
+[v _RB3 RB3 `VEb  1 e 0 @51 ]
+"2519
+[v _RB4 RB4 `VEb  1 e 0 @52 ]
+"2521
+[v _RB5 RB5 `VEb  1 e 0 @53 ]
+"2523
+[v _RB6 RB6 `VEb  1 e 0 @54 ]
+"2525
+[v _RB7 RB7 `VEb  1 e 0 @55 ]
+"2557
+[v _RCIF RCIF `VEb  1 e 0 @101 ]
+"2559
+[v _RD RD `VEb  1 e 0 @3168 ]
+"2603
+[v _SPEN SPEN `VEb  1 e 0 @199 ]
+"2623
+[v _SYNC SYNC `VEb  1 e 0 @1220 ]
+"2713
+[v _TRISC6 TRISC6 `VEb  1 e 0 @1086 ]
+"2715
+[v _TRISC7 TRISC7 `VEb  1 e 0 @1087 ]
+"2739
+[v _TRMT TRMT `VEb  1 e 0 @1217 ]
+"2749
+[v _TXEN TXEN `VEb  1 e 0 @1221 ]
+"2759
+[v _WR WR `VEb  1 e 0 @3169 ]
+"2761
+[v _WREN WREN `VEb  1 e 0 @3170 ]
+"26 F:\Electronics\Embeded\PIC Microcontroller\EM-18 RFID and PIC\MPLAB XC8\em-18.X\main.c
+[v _main main `(v  1 e 0 0 ]
+{
+"28
+[v main@rfid rfid `[13]uc  1 a 13 29 ]
+[v main@i i `uc  1 a 1 42 ]
+[v main@F1136 F1136 `[13]uc  1 s 13 F1136 ]
+"66
+} 0
+"33 F:\Electronics\Embeded\PIC Microcontroller\EM-18 RFID and PIC\MPLAB XC8\em-18.X\uart.h
+[v _UART_Read UART_Read `(uc  1 e 1 0 ]
+{
+"38
+} 0
+"1
+[v _UART_Init UART_Init `(uc  1 e 1 0 ]
+{
+"3
+[v UART_Init@x x `ui  1 a 2 9 ]
+"1
+[v UART_Init@baudrate baudrate `DCCl  1 p 4 6 ]
+"22
+} 0
+"6 C:\Program Files (x86)\Microchip\xc8\v1.32\sources\common\aldiv.c
+[v ___aldiv __aldiv `(l  1 e 4 0 ]
+{
+"11
+[v ___aldiv@quotient quotient `l  1 a 4 2 ]
+"12
+[v ___aldiv@sign sign `uc  1 a 1 1 ]
+[v ___aldiv@counter counter `uc  1 a 1 0 ]
+"6
+[v ___aldiv@divisor divisor `l  1 p 4 0 ]
+[v ___aldiv@dividend dividend `l  1 p 4 4 ]
+"42
+} 0
+"29 F:\Electronics\Embeded\PIC Microcontroller\EM-18 RFID and PIC\MPLAB XC8\em-18.X\uart.h
+[v _UART_Data_Ready UART_Data_Ready `(uc  1 e 1 0 ]
+{
+"32
+} 0
+"97 F:\Electronics\Embeded\PIC Microcontroller\EM-18 RFID and PIC\MPLAB XC8\em-18.X\lcd.h
+[v _Lcd_Write_String Lcd_Write_String `(v  1 e 0 0 ]
+{
+"99
+[v Lcd_Write_String@i i `i  1 a 2 10 ]
+"97
+[v Lcd_Write_String@a a `*.26uc  1 p 2 5 ]
+"102
+} 0
+"81
+[v _Lcd_Write_Char Lcd_Write_Char `(v  1 e 0 0 ]
+{
+[v Lcd_Write_Char@a a `uc  1 a 1 wreg ]
+"83
+[v Lcd_Write_Char@y y `uc  1 a 1 3 ]
+[v Lcd_Write_Char@temp temp `uc  1 a 1 2 ]
+"81
+[v Lcd_Write_Char@a a `uc  1 a 1 wreg ]
+"84
+[v Lcd_Write_Char@a a `uc  1 a 1 4 ]
+"95
+} 0
+"41
+[v _Lcd_Set_Cursor Lcd_Set_Cursor `(v  1 e 0 0 ]
+{
+[v Lcd_Set_Cursor@a a `uc  1 a 1 wreg ]
+"43
+[v Lcd_Set_Cursor@temp temp `uc  1 a 1 10 ]
+[v Lcd_Set_Cursor@y y `uc  1 a 1 9 ]
+[v Lcd_Set_Cursor@z z `uc  1 a 1 8 ]
+"41
+[v Lcd_Set_Cursor@a a `uc  1 a 1 wreg ]
+[v Lcd_Set_Cursor@b b `uc  1 p 1 4 ]
+"44
+[v Lcd_Set_Cursor@a a `uc  1 a 1 7 ]
+"60
+} 0
+"62
+[v _Lcd_Init Lcd_Init `(v  1 e 0 0 ]
+{
+"79
+} 0
+"35
+[v _Lcd_Clear Lcd_Clear `(i  1 e 2 0 ]
+{
+"39
+} 0
+"26
+[v _Lcd_Cmd Lcd_Cmd `(v  1 e 0 0 ]
+{
+[v Lcd_Cmd@a a `uc  1 a 1 wreg ]
+[v Lcd_Cmd@a a `uc  1 a 1 wreg ]
+"28
+[v Lcd_Cmd@a a `uc  1 a 1 3 ]
+"33
+} 0
+"4
+[v _Lcd_Port Lcd_Port `(v  1 e 0 0 ]
+{
+[v Lcd_Port@a a `uc  1 a 1 wreg ]
+[v Lcd_Port@a a `uc  1 a 1 wreg ]
+"6
+[v Lcd_Port@a a `uc  1 a 1 0 ]
+"25
+} 0

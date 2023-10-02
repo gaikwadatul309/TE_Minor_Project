@@ -1,0 +1,16 @@
+_Lcd_Write_String: CODE, 1222 0 61
+___aldiv: CODE, 1449 0 143
+_Lcd_Init: CODE, 1358 0 91
+__stringtab: STRING, 3 0 16
+__stringdata: STRING, 19 0 33
+_UART_Read: CODE, 1066 0 6
+_Lcd_Write_Char: CODE, 1165 0 57
+_UART_Data_Ready: CODE, 1060 0 6
+_UART_Init: CODE, 1796 0 236
+_main: CODE, 1592 0 204
+_Lcd_Cmd: CODE, 1139 0 26
+__initialization: CODE, 2032 0 12
+_Lcd_Set_Cursor: CODE, 1283 0 75
+_Lcd_Clear: CODE, 1072 0 11
+_Lcd_Port: CODE, 1113 0 26
+Total: 1003
